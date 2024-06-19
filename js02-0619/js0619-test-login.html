@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 預設帳號:abc;密碼:1234
+        let uid = 'abc';
+        let upw = '1234';
+
+        // 多層條件檢查
+        if (uid == 'abc' && upw == '1234') {
+            console.log('帳密ok')
+        } else if (uid == 'abc' && upw != '1234') {
+            console.log('密碼err')
+        }else if (uid != 'abc' && upw == '1234') {
+            console.log('帳號err')
+        }else {
+            console.log('帳密err')
+        }
+
+        // 單層條件檢查
+        if (uid == 'abc' && upw == '1234') {
+            console.log('帳密ok')
+        } 
+        if (uid == 'abc' && upw != '1234') {
+            console.log('密碼err')
+        }
+        if (uid != 'abc' && upw == '1234') {
+            console.log('帳號err')
+        }
+        if (uid != 'abc' && upw != '1234') {
+            console.log('帳密err')
+        }
+
+
+    </script>
+</body>
+
+</html>

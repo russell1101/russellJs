@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 字串變數 -->
+    <script>
+        let dogname='健仔';
+        console.log(`毛孩名字:${dogname}`);
+        let dogAge=7;
+        console.log(`毛孩年紀:${dogAge}歲`);
+        dogAge='7'
+        // 取得資料型態=>typeof(變數名)
+        console.log(typeof(dogAge));
+        // 未轉換為數值
+        console.log(`毛孩5年後年齡${dogAge+5}歲`);
+        // 已暫時轉換為數值
+        console.log(`毛孩5年後年齡:${Number(dogAge)+5}歲`);
+        console.log(typeof(dogAge));
+        // 真正要字串轉述值，必須重新指派轉換結果給原來的變數
+        dogAge=Number(dogAge);
+        console.log(`毛孩5年後年齡${dogAge+5}歲`);
+        console.log(typeof(dogAge));
+
+        // 浮點數=>帶有小數點資料
+        let pi = 3.14;
+        let r = 6;
+        let area = pi*r*r;
+        console.log(area)
+        console.log(parseInt(area));    //取整數(無條件捨去)
+        console.log(area.toFixed(2));   //取出小數點二位 回傳型態為string
+        console.log(Number(area.toFixed(2))+1); //若要運算，必須用number()轉換
+
+        </script>
+
+</body>
+</html>
