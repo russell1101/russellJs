@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 輸入視窗PROMPT
+        // 輸入分數
+        let a;
+        a = prompt('請輸入您的分數', 60)
+
+        // 檢查是否按了取消
+        if (a == null) {
+            alert('您按了取消')
+        } else if (a == '') {
+            alert('分數不可空白')
+        } else if (a >= 0 && a < 60) {
+            alert('不及格')
+        } else if (a >= 60 && a <= 100) {
+            alert('及格')
+        } else {
+            alert(a + '不是有效分數範圍')
+        }
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

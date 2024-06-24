@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a;
+        a = prompt('請輸入分數');
+
+        // 重新宣告新變數 並轉換成數值
+        let insa=Number(a)
+
+        if (a == null) {
+            alert('您按了取消')
+        } else if (a == '') {
+            alert('分數不能空白')
+        } else if (insa > 100 || insa < 0) {
+            alert(insa + '分數不是有效範圍')
+        } else if (insa >= 60) {
+            alert('及格')
+        } else if (insa < 60) {
+            alert('不及格')
+        } else {
+            alert('分數輸入err')
+        }
+
+    </script>
+</body>
+
+</html>
