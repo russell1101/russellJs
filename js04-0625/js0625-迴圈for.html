@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 用迴圈寫出1-5
+        // i++=i+1
+        for(let i=1; i<=5; i=i+1){
+            document.write(`${i}<br>`)
+        }
+
+        // s在迴圈外 迴圈結束後才能繼續存在
+        // i在迴圈內 迴圈結束 生命週期即結束
+        let s
+        let i=1
+        for(i=1; i<=10; i++){
+            s=i+i;    //累計
+        }
+        console.log(`1+2+3+....+10=${s}`)
+        console.log(`i=${i}`)
+
+    </script>
+
+</body>
+
+</html>

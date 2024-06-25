@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 輸入{window.prompt()}星期別代號，顯示星期?
+        let a = prompt('請輸入星期別代號:1-7');
+        // length=資料長度
+        console.log(a.length);
+
+        // trim()去除內容前後多餘空白
+
+        switch (a.trim()) {
+            case null:
+                document.write('您按了取消')
+                break;
+            case '1':
+                document.write('星期一');
+                break; /* 結束switch */
+            case '2':
+                document.write('星期二');
+                break; /* 結束switch */
+            case '3':
+                document.write('星期三');
+                break; /* 結束switch */
+            case '4':
+                document.write('星期四');
+                break; /* 結束switch */
+            case '5':
+                document.write('星期五');
+                break; /* 結束switch */
+            case '6':
+                document.write('星期六');
+                break; /* 結束switch */
+            case '7':
+                document.write('星期天');
+                break; /* 結束switch */
+            default:
+                // 以上條件都不成立
+                document.write('輸入err')
+                break; /* switch 中最後一個break可省略 */
+        }
+
+    </script>
+</body>
+
+</html>

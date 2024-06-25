@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 血型判斷(大小寫不同)
+
+        // 去除前後多餘空白
+        // let blood = prompt('請輸入您的血型(A/B/AB/O)').trim();
+
+
+        // // if-else if
+        // if (blood == null) {
+        //     console.log('您按了取消')
+        // } else if (blood == '') {
+        //     console.log('血型不可空白')
+        // } else if (blood == 'A' || blood == 'a') {
+        //     console.log('血型A')
+        // } else if (blood == 'B' || blood == 'b') {
+        //     console.log('血型B')
+        // } else if (blood == 'AB' || blood == 'ab') {
+        //     console.log('血型AB')
+        // } else if (blood == 'O' || blood == 'o') {
+        //     console.log('血型O')
+        // } else {
+        //     console.log('血型輸入err')
+        // }
+
+        // // switch
+        // let blood = prompt('請輸入您的血型(A/B/AB/O)');
+        // switch (blood.trim()) {
+        //     case null:
+        //         document.write('您按了取消');
+        //         break;
+        //     case '':
+        //         document.write('血型不可空白');
+        //         break;
+        //     case 'a':
+        //     case 'A':
+        //         document.write('血型A');
+        //         break;
+        //     case 'ab':
+        //     case 'AB':
+        //         document.write('血型AB');
+        //         break;
+        //     case 'b':
+        //     case 'B':
+        //         document.write('血型B');
+        //         break;
+        //     case 'o':
+        //     case 'O':
+        //         document.write('血型O');
+        //         break;
+        //     default:
+        //         document.write('輸入err');
+        //         break;
+        // }
+
+
+        // // 更好的寫法
+        let blood = prompt('請輸入您的血型(A/B/AB/O)');
+
+        // 先檢查是否按取消
+        if (blood == null) {
+            document.write('您按了取消')
+        } else {
+            // 按了確定，1.先把全部變成大寫2.去除前後空白內容
+            blood = blood.toUpperCase().trim()
+            // 檢查代號
+            if (blood == '') {
+                document.write('血型不可空白')
+            } else if (blood == 'A') {
+                document.write('血型A')
+            } else if (blood == 'B') {
+                document.write('血型B')
+            } else if (blood == 'AB') {
+                document.write('血型AB')
+            } else if (blood == 'O') {
+                document.write('血型O')
+            } else {
+                document.write('血型輸入err')
+            }
+        }
+
+        // 換行
+        document.write('<br>')
+
+        // switch
+        let blood2 = prompt('請輸入您的血型-switch');
+        if (blood2 == null) {
+            document.write('您按了取消');
+        } else {
+            switch (blood2.trim().toUpperCase()) {
+                case '':
+                    document.write('血型不可空白');
+                    break;
+                case 'A':
+                    document.write('血型A');
+                    break;
+                case 'B':
+                    document.write('血型B');
+                    break;
+                case 'AB':
+                    document.write('血型AB');
+                    break;
+                case 'O':
+                    document.write('血型O');
+                    break;
+                default:
+                    document.write('血型輸入err');
+                    break;
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
