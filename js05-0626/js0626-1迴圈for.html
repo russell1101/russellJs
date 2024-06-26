@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //  <!-- 使用迴圈前提 -->
+        // 1.連續執行一樣的程式序敘述
+        // 2.有規律性
+        // for ()已知執行次數
+        // for (參數1; 參數2; 參數3)
+        // 參數1: 迴圈計數器變數起始值
+        // 參數2: 迴圈的條件
+        // 參數3: 每次執行迴圈後，計數器變數的增減值
+
+        //ex: 1連續顯示5次hello + 換行
+        // document.write('hello<br>');
+        // document.write('hello<br>');
+        // document.write('hello<br>');
+        // document.write('hello<br>');
+        // document.write('hello<br>');
+
+        // for (let i = 1; i <= 5; i++) {
+        //     document.write('hello<br>');
+        // }
+        // // 建立水平線<hr>
+        // document.write('<hr>');
+
+        // // ex2:顯示數字10-15
+        // // 可以一直用i 是因為i 變數若是宣在回圈內，用完即消失
+        // // 方法1
+        // for (let i = 1; i <= 6; i++) {  //執行6次
+        //     document.write(`${i + 9}<br>`);
+        // }
+
+        // document.write('<hr>');
+
+        // // 方法2
+        // for (let i = 10; i <= 15; i++) {
+        //     document.write(`${i}<br>`);
+        // }
+
+        // document.write('<hr>');
+
+        // // 方法3 使用迴圈外的變數顯示數值
+        // let a = 10
+        // for (let i = 1; i <= 6; i++) { //設定變數是為了執行6次
+        // //     document.write(`${a}<br>`)
+        // //     a++;
+        // // }
+
+        // document.write('<hr>');
+
+        // // 方法4
+
+        // let b = 9
+        // for (let i = 1; i <= 6; i++) { //設定變數是為了執行6次
+        //     document.write(`${b = b + 1}<br>`);
+        // }
+
+        // document.write('<hr>');
+
+        // // 方法5
+        // let c = 10
+        // for (let i = 1; i <= 6; i++) {
+        //     document.write(`${c++}<br>`)
+        // }
+        // document.write('<hr>');
+
+        // // 方法6
+        // let d = 9
+        // for (let i = 1; i <= 6; i++) {
+        //     document.write(`${++d}<br>`)
+        // }
+        // document.write('<hr>');
+
+
+        // ex3:顯示1-10的奇數
+        for (let i = 1; i <= 10; i++) {
+            if (i % 2 === 1) {
+                document.write(i + ' ');
+            }
+        }
+        document.write('<hr>');
+
+        // ex4:顯示1-10的偶數 逗號隔開 最後一個不要逗號
+        for (let i = 1; i <= 10; i++) {
+            if (i % 2 === 0) {
+                document.write(i);
+                // 不是最後一個值的時候 +逗號
+                if (i != 10) {
+                    document.write(',')
+                }
+            }
+        }
+
+        document.write('<hr>');
+
+        for (let i = 1; i <= 10; i++) {
+            if (i % 2 === 0) {
+                // 先檢查是否為最後一個值
+                if (i === 10) {
+                    document.write(i);
+                } else {
+                    document.write(i + ',');
+                }
+            }
+        }
+
+        document.write('<hr>');
+        // ex5: 1-10中 3與5的倍數 迴圈後再顯示
+
+        let str3 = '';  //宣告其為字串
+        let str3b = '';
+        let tot3 = 0;   //存放3倍數合計(設定為數值)
+
+        let str5 = '';
+        let str5b = '';  
+        let tot5 = 0;  //存放5倍數合計(設定為數值)
+
+        for (i = 1; i <= 10; i++) {
+            if (i % 3 === 0) {
+                str3 = str3 + i + ' ';
+                str3b = str3b + i;    //紀錄字串
+                if (i != 9) {         //將不等於9的加上+號
+                    str3b = str3b + '+';
+                }
+                tot3 = tot3 + i;
+                // 演算過程
+                // i=3=>tot3=tot3+i=0+3=3
+                // i=6=>tot3=tot3+i=3+6=9
+                // i=6=>tot3=tot3+i=9+9=18
+
+            } else if (i % 5 === 0) {
+                str5 = str5 + i + ' ';
+                str5b = str5b + i; //紀錄字串
+                if (i != 10) {     //將不等於10的加上+號
+                    str5b = str5b + '+';
+                }
+                tot5 = tot5 + i;   //計算總和
+            }
+        }
+        document.write(str3 + '<br>');
+        document.write(str5 + '<br>');
+        document.write(`${str3b}=${tot3} <br>`);
+        document.write(`${str5b}=${tot5} <br>`);
+    </script>
+</body>
+
+</html>

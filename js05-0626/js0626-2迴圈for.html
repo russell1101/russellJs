@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ex7:
+        // 彈出輸入視窗
+        // 輸入運算起始值 與 結束值
+        // 算出奇數和
+        // 算出偶數和
+        let start = prompt('請輸入起始值');
+        let end = prompt('請輸入結束值');
+
+
+        let tot1 = 0, tot2 = 0;
+
+        if (start == null || end == null) {
+            console.log('取消')
+        } else {
+            start = start.trim()
+            end = end.trim()
+            if (start == '' || end == '') {
+                console.log('空白')
+            } else {
+                start = Number(start);
+                end = Number(end);
+                if (start > end) {
+                    let tmp = start;
+                    start = end
+                    end = tmp
+                }
+                for (let i = start; i <= end; i++) {
+                    if (i % 2 === 1) {
+                        tot1 += i;
+                    } else {
+                        tot2 += i;
+                    }
+                }
+                if (start < end) {
+                    console.log(`${start}~${end}的奇數和=${tot1}`);
+                    console.log(`${start}~${end}的偶數和=${tot2}`);
+                } else {
+                    console.log(`${end}~${start}的奇數和=${tot1}`);
+                    console.log(`${end}~${start}的偶數和=${tot2}`);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
