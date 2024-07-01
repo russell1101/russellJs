@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1-100中 5的倍數 合計大於50結束迴圈
+
+        // for迴圈
+        let tol = 0
+        for (let i = 1; i <= 100; i++) {
+            if (i % 5 == 0) {
+                tol = tol + i;
+                console.log(`${tol}`)
+                if (tol > 50) {  //檢查的如果放在印出前 結果就會停在50; 放在後就會印出75 再停止迴圈
+                    break;
+                }
+            }
+        }
+        console.log('-------------')
+
+        // while迴圈
+        tol = 0;  //必須先歸零 但因執行完for迴圈值為75 故需要先做此動作
+        let i = 1
+        while (tol <= 50) {
+            if (i % 5 == 0) {
+                tol = tol + i;
+
+            }
+            i++;
+            console.log(`${tol}`);
+        }
+
+    </script>
+</body>
+
+</html>
