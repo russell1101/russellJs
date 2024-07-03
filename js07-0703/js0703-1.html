@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 用continue(忽略下方程式執行，跳回迴圈起始處)
+        // 1-100中5的倍數和
+
+        // for
+        let tot = 0;
+        for (let i = 1; i <= 100; i++) {
+            if (i % 5 != 0) {
+                continue;
+            }
+            tot = tot + i;
+        }
+        console.log('---for---');
+        console.log(`1-100中的倍數和=${tot}`);
+
+        // while
+        tot = 0;
+        let i = 0
+        while (i <= 100) {
+            i++
+            if (i % 5 != 0) {
+                continue;
+            }
+            tot = tot + i
+        }
+        console.log('---while---');
+        console.log(`1-100中的倍數和=${tot}`);
+
+        // do while
+        tot = 0
+        i = 0
+        do {
+            i++;
+            if (i % 5 != 0) {
+                continue;
+            }
+            tot = tot + i
+        } while (i <= 100)
+        console.log('---do while---');
+        console.log(`1-100中的倍數和=${tot}`);
+
+    </script>
+</body>
+
+</html>

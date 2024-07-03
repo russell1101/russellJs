@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 有參數 有回傳值
+
+        function chkScore(intNum) {
+            if (intNum >= 60) {
+                // document.write('及格');
+                return '及格';
+            } else {
+                // document.write('不及格')
+                return '不及格';
+            }
+        }
+
+
+        // 分數1
+
+        let score = Number(prompt('請輸入分數'));
+        // prompt回傳為字串 先轉為數值
+        document.write(chkScore(score));
+        // 回傳值會回傳到呼叫身上 chkScore(score)='及格/不及格'
+
+    </script>
+</body>
+
+</html>

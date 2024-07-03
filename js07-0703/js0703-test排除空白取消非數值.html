@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function salc(a, b, c) {
+        //     if (c == '+') {
+        //         document.write(`${a}+${b}=${a + b}`);
+        //     } else if (c == '-') {
+        //         document.write(`${a}-${b}=${a - b}`);
+        //     } else if (c == '*') {
+        //         document.write(`${a}*${b}=${a * b}`);
+        //     } else if (c == '/') {
+        //         document.write(`${a}/${b}=${a / b}`);
+        //     }else{
+        //         document.write('運算符號輸入錯誤')
+        //     }
+
+        // }
+        // // prompt回傳為字串 要做運算必須先轉換成數值
+        // let a1 = Number(prompt('請輸入第一個數字'));
+        // let c1 = prompt('請輸入想要的運算符號');
+        // let b1 = Number(prompt('請輸入第二個數字'));
+
+        // salc(a1, b1, c1)
+
+
+
+        let ans = 0
+        function salc(a, b, c) {
+            if (c == '+') {
+                ans = a + b;
+                document.write(`${a}+${b}=`);
+
+            } else if (c == '-') {
+                document.write(`${a}-${b}=`);
+                ans = a - b;
+            } else if (c == '*') {
+                document.write(`${a}*${b}=`);
+                ans = a * b;
+            } else if (c == '/') {
+                document.write(`${a}/${b}=`);
+                ans = a / b;
+            }
+            document.write(ans.toFixed(2));
+        }
+
+        // prompt回傳為字串 要做運算必須先轉換成數值
+        let a1 = prompt('請輸入第一個數字');
+        let c1 = prompt('請輸入想要的運算符號');
+        let b1 = prompt('請輸入第二個數字');
+
+        // 排除以下狀況
+        // 1.非數值    isNan(變數)
+        // 2.多於空白  變數.trim()   (變數必須要是字串)
+        // 3.取消      null
+        if (a1 == null || b1 == null || c1 == null) {
+            document.write('不可按取消');
+        } else if (isNaN(a1) || isNaN(b1)) {  //is not a number
+            document.write('非數值 無法運算')
+        } else {
+            // 去除多餘空白
+            // 字串轉數值number
+            a1 = Number(a1.trim());
+            b1 = Number(b1.trim());
+            c1 = c1.trim()
+            // 再呼叫函式
+            salc(a1, b1, c1);
+        }
+
+
+    </script>
+    </script>
+</body>
+
+</html>

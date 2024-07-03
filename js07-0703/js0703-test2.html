@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // let pass = 0
+        // let fail = 0
+        // let tot = 0
+        // let avr = 0
+        // function result(score) {
+        //     tot = tot + score;
+        //     if (score >= 60) {
+        //         pass = pass + 1;
+        //     } else {
+        //         fail = fail + 1;
+        //     }
+        // }
+
+        // for (let i = 1; true; i++) {
+        //     let score = prompt(`請輸入第${i}次分數`)
+        //     if (score == null) {
+        //         alert('輸入結束')
+        //         break;
+        //     } else if(isNaN(score)){
+        //         alert('非數值 請重新輸入');
+        //         continue;
+        //     } else {
+        //         score = score.trim();
+        //         score = Number(score);
+        //     } if (score < 0 || score > 100) {
+        //         alert('輸入結束')
+        //         break;
+        //     } else {
+        //         document.write(`第${i}次分數:${score}<br>`);
+        //         result(score)
+        //     }
+        //     avr = (tot / i).toFixed(2);
+        // }
+        // document.write('--------------------------<br>');
+        // document.write(`　及格人數:${pass}人<br>`);
+        // document.write(`不及格人數:${fail}人<br>`);
+        // document.write(`總　　　分:${tot}分<br>`);
+        // document.write(`總　平　均:${avr}分<br>`);
+
+
+
+
+        // 老師寫法
+        let count = 0; //第n次
+        let pass = 0;  //及格人數
+        let fail = 0;  //不及格人數
+        let tot = 0;   //總分
+        let avg = 0;   //總平均
+
+        while (true) {    //true表示無條件執行迴圈
+            let score = prompt('請輸入分數:');
+            // 是否輸入-1或取消
+            if (score === '-1' || score == null) {
+                break;
+            }
+
+            // 是否為非數值
+            if (isNaN(score)) {
+                alert('輸入非數值資料 請重新輸入')
+                continue;    //如果是非數值資料 重新跑一次迴圈 重新輸入
+            }
+            score = Number(score);
+            // 檢查是否為有效分數
+            if (score < 0 || score > 100) {
+                alert('非分數有效範圍 請重新輸入');
+                continue;
+            }
+            // 及格與否
+            if (score >= 60) {
+                pass++;
+            } else {
+                fail++;
+            }
+            tot = tot + score;
+            count++;
+            document.write(`第${count}次:${score}分<br>`);
+        }
+        document.write('--------------------------<br>');
+        document.write(`　及格人數:${pass}人<br>`);
+        document.write(`不及格人數:${fail}人<br>`);
+        document.write(`總　　　分:${tot}分<br>`);
+        // 總平均計算
+        avg=tot/(pass+fail);
+        avg=avg.toFixed(2);
+        document.write(`總　平　均:${avg}分<br>`);
+
+    </script>
+</body>
+
+</html>
