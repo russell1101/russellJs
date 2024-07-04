@@ -9,7 +9,7 @@
 
 <body>
     <script>
- // 猜數字：直到猜對才結束
+        // 猜數字：直到猜對才結束
         // 用亂數產生一個值：60
         // 輸入資訊顯示console.log()
         // 第1次：50 => 太小了（提示：50-100）
@@ -22,21 +22,22 @@
         // console.log(Math.floor(Math.random()*100)+1); // 回傳 1 ~ 100
         // 產生亂數給變數bingoNum
         let bingoNum = Math.floor(Math.random() * 100) + 1;
-
-        while(true){
-            let guess=prompt('請輸入數字');
-            if(guess==null){
+        
+        let guess
+        while (true) {
+            guess = prompt('請輸入數字');
+            if (guess == null) {
                 console.log('按到取消 請重新輸入');
                 continue;
-            }else if(isNaN(guess)){
+            } else if (isNaN(guess)) {
                 console.log('輸入格式錯誤 請重新輸入數字1-100');
                 continue;
-            }else{
-                guess=Number(guess);
-            }if(guess<1||guess>100){
+            } else {
+                guess = Number(guess);
+            } if (guess < 1 || guess > 100) {
                 console.log('請重新輸入數字1-100');
                 continue;
-            }else if(guess==bingoNum){
+            } else if (guess == bingoNum) {
                 console.log('恭喜答對')
             }
         }
