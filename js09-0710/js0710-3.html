@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 只顯示奇數
+        // 方法1
+        let arr1 = [1, 3, 7, 100, 234];
+        // for (let i = 0; i < arr1.length; i++) {
+        //     if (arr1[i] % 2 == 1) {
+        //         console.log(arr1[i]);
+        //     }
+        // }
+        // console.log(`arr1:${arr1}`);
+
+
+
+        // 方法2 陣列中只保留奇數=>filter
+        console.log(arr1);
+        // const宣告一個新的陣列 是常數 不會再改變
+        // 後面可以用call back function 直接接函式 不一定要寫在外面再呼叫
+        const odds = arr1.filter((n) => {    //call back 箭頭函式
+            // 檢查是否為奇數
+            // 麻煩寫法
+            if (n % 2 == 1) {
+                return true;
+            }
+            return false;
+        });
+
+        // 簡化寫法
+        // let odds = arr1.filter((n) => {
+        //     return n % 2 == 1;  //n=1=> 1%2==1 => true
+        // });
+
+        // 再簡化
+        // let odds = arr1.filter((n) => n % 2 == 1);
+
+
+        console.log(odds);  //篩選後的奇數內容
+        console.log(typeof (odds));  //odds資料型別 (陣列)
+        console.log(arr1);  //篩選後原陣列內容 不變
+
+
+
+    </script>
+</body>
+
+</html>

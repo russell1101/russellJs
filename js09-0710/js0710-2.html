@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr1 = [100, 30, 99, 10, 3];
+        console.log(arr1);
+        // 遞增排序
+        // arr1.sort();
+        // console.log('排序後'+arr1);  錯誤的 因排序會先比第一位數 故10會比3還小
+
+        arr1.sort((a, b) => {
+            return a - b;  //遞增
+        });
+        console.log(`遞增排序後${arr1}`);
+
+        arr1.reverse();  //反轉
+        console.log(`遞減排序後:${arr1}`);
+
+
+        arr1.sort((a,b)=>{
+            return b-a; //遞減
+        });
+        console.log(`遞減排序後${arr1}`);
+        arr1.reverse();  //反轉
+        console.log(arr1);
+
+
+
+
+    </script>
+</body>
+
+</html>
