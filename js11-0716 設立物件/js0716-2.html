@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 物件模組化 => 物件樣板 => 字首大寫
+        // 建立物件樣板=> Mobile
+        function Mobile(brand, colar, size) {
+            // 等號左邊物件內屬性 右邊為參數回傳直
+            this.brand = brand;
+            this.colar = colar;
+            this.size = size;
+            this.showMsg = function () {
+                console.log(`品牌:${this.brand},色彩:${this.colar},尺寸:${this.size}`);
+            }
+        };
+
+        let m1 = new Mobile('iphone', 'black', '14');
+        m1.showMsg();
+        let m2 = new Mobile('三星', '灰黑', '13');
+        m2.showMsg();
+    </script>
+</body>
+
+</html>

@@ -9,27 +9,254 @@
 
 <body>
     <script>
-        // 1-49 亂數產生 遞增排序 不重複
-        let num = Math.floor(Math.random() * 49) + 1;
+        // 1 - 49 亂數產生 遞增排序 不重複
 
-        let arr = new Array();
 
-        for (let i = 1; true; i++) {
-            num = Math.floor(Math.random() * 49) + 1;
-            if (arr.length == 6) {
-                break;
-            } else if (arr.includes(num) == false) {
-                arr.push(num);
-            }
+        // 亂數產生 建立函數(工具先準備好)
+        // 建立一個function 設定最大值 直接只要設定一個就可以 不用底下重工
+        function allrandnum(max) {
+            return Math.floor(Math.random() * max) + 1;
         }
 
-        arr.sort((a, b) => {
-            return a - b;  //遞增
-        });
+        // function randnum() {
+        //     return Math.floor(Math.random() * 49) + 1;
+        // }
 
-        let num2 = Math.floor(Math.random() * 49) + 1;
-        console.log(arr);
-        console.log(num2);
+        // function randnum38() {
+        //     return Math.floor(Math.random() * 38) + 1;
+        // }
+
+        // function randnum8() {
+        //     return Math.floor(Math.random() * 8) + 1;
+        // }
+
+        // function randnum39() {
+        //     return Math.floor(Math.random() * 39) + 1;
+        // }
+
+        // let arr = [];
+
+        // for (let i = 1; true; i++) {
+        //     num = randnum();
+        //     if (arr.length == 6) {
+        //         break;
+        //     } else if (arr.includes(num) == false) {
+        //         arr.push(num);
+        //     }
+        // }
+
+        // arr.sort((a, b) => {
+        //     return a - b;  //遞增
+        // });
+
+        // let num2 = randnum();
+        // console.log(arr);
+        // console.log(num2);
+
+
+
+
+
+        // 老師寫法1 while
+        // let arr = [];
+        // for (let i = 0; i)
+
+        //     let arr = [];
+        // let i = 0;
+        // while (i < 6) {
+        //     取亂數
+        //     let num = Math.floor(Math.random() * 49) + 1;
+        //     // 檢查陣列是否存在此號碼
+        //     if (arr.indexOf(num) == -1) {
+        //         // 沒有重複則加入陣列
+        //         arr.push(num);
+        //         i++
+        //     }
+        // }
+        // console.log(arr);
+
+
+
+        // 老師寫法2 do while
+
+        // function lotnum(a) {
+        //     if (a == 1) {
+        //         let arr = [];
+        //         let i = 0;
+        //         do {
+        //             let num = randnum();
+        //             // 檢查陣列是否存在此號碼
+        //             if (arr.indexOf(num) == -1) {
+        //                 // 沒有重複則加入陣列
+        //                 arr.push(num);
+        //                 i++
+        //             }
+        //         } while (i < 6);
+
+        //         console.log('排序前:' + arr);
+        //         arr.sort((a, b) => {
+        //             return a - b;
+        //         });
+        //         console.log('排序後' + arr);
+
+        //         // 取亂數特別號
+        //         let specialnum = randnum();
+        //         console.log('特別號' + specialnum);
+        //     } else if (a == 2) {
+        //         let arr = [];
+        //         let i = 0;
+        //         do {
+        //             let num = randnum38();
+        //             // 檢查陣列是否存在此號碼
+        //             if (arr.indexOf(num) == -1) {
+        //                 // 沒有重複則加入陣列
+        //                 arr.push(num);
+        //                 i++
+        //             }
+        //         } while (i < 6);
+
+        //         console.log('排序前:' + arr);
+        //         arr.sort((a, b) => {
+        //             return a - b;
+        //         });
+        //         console.log('排序後' + arr);
+
+        //         // 取亂數特別號
+        //         let specialnum = randnum8();
+        //         console.log('特別號' + specialnum);
+        //     } else if (a == 3) {
+        //         let arr = [];
+        //         let i = 0;
+        //         do {
+        //             let num = randnum39();
+        //             // 檢查陣列是否存在此號碼
+        //             if (arr.indexOf(num) == -1) {
+        //                 // 沒有重複則加入陣列
+        //                 arr.push(num);
+        //                 i++
+        //             }
+        //         } while (i < 5);
+
+        //         console.log('排序前:' + arr);
+        //         arr.sort((a, b) => {
+        //             return a - b;
+        //         });
+        //         console.log('排序後' + arr);
+        //     }
+        // }
+
+        // // 跳多字元符號=> \n=>換行
+        // let type = prompt('請輸入樂透號代碼=>\n1.大樂透 2.威力採 3.今彩539')
+
+        // // 產生樂透號碼
+        // lotnum(type);
+
+
+
+        function lotnum1() {
+            let arr = [];
+            let i = 0;
+            do {
+                let num = allrandnum(49);
+                // 檢查陣列是否存在此號碼
+                if (arr.indexOf(num) == -1) {
+                    // 沒有重複則加入陣列
+                    arr.push(num);
+                    i++
+                }
+            } while (i < 6);
+
+            console.log('排序前:' + arr);
+            arr.sort((a, b) => {
+                return a - b;
+            });
+            console.log('排序後' + arr);
+
+            // 取亂數特別號
+            let specialnum = allrandnum(49);
+            console.log('特別號' + specialnum);
+        }
+        function lotnum2() {
+            let arr = [];
+            let i = 0;
+            do {
+                let num = allrandnum(38);
+                // 檢查陣列是否存在此號碼
+                if (arr.indexOf(num) == -1) {
+                    // 沒有重複則加入陣列
+                    arr.push(num);
+                    i++
+                }
+            } while (i < 6);
+
+            console.log('排序前:' + arr);
+            arr.sort((a, b) => {
+                return a - b;
+            });
+            console.log('排序後' + arr);
+
+            // 取亂數特別號
+            let specialnum = allrandnum(8);
+            console.log('特別號' + specialnum);
+        }
+        function lotnum3() {
+            let arr = [];
+            let i = 0;
+            do {
+                let num = allrandnum(39);
+                // 檢查陣列是否存在此號碼
+                if (arr.indexOf(num) == -1) {
+                    // 沒有重複則加入陣列
+                    arr.push(num);
+                    i++
+                }
+            } while (i < 5);
+
+            console.log('排序前:' + arr);
+            arr.sort((a, b) => {
+                return a - b;
+            });
+            console.log('排序後' + arr);
+        }
+
+        let type = prompt('請輸入樂透號代碼=>\n1.大樂透 2.威力採 3.今彩539');
+        switch (type) {
+            case '1':
+                // 產生大樂透
+                lotnum1();
+                break;
+            case '2':
+                // 產生威力採
+                lotnum2();
+                break;
+            case '3':
+                // 產生今彩
+                lotnum3();
+                break;
+            case '4':
+            default:
+                console.log('err 代號輸入錯誤')
+                break;
+        }
+
+
+
+
+        // // 老師寫法3 for
+        // let arr = [];
+        // for (let i = 0; i < 6; i++) {
+        //     let num = Math.floor(Math.random() * 49) + 1;
+        //     // 檢查陣列是否存在此號碼
+        //     if (arr.indexOf(num) == -1) {
+        //         // 沒有重複則加入陣列
+        //         arr.push(num);
+        //     } else {
+        //         i = i - 1; //因為重複 if又固定會i++ 所以要減1
+        //         console.log(`在編號${i}的位置，${num}重複了`)
+        //     }
+        // }
+        // console.log(arr);
+
     </script>
 </body>
 

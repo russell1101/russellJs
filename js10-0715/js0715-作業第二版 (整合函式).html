@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 - 49 亂數產生 遞增排序 不重複
+
+        // 亂數產生 建立函數(工具先準備好)
+        // 建立一個function 設定最大值 直接只要設定一個就可以 不用底下重工
+        function allrandnum(max) {
+            return Math.floor(Math.random() * max) + 1;
+        }
+
+        // 大樂透 第一區1-49挑6個 + 地案區1-49挑1個
+        // 威力採 第一區1-38挑6個 + 第二區1-8挑1個
+        // 今彩539 第一區1-39挑5個
+        // item =>樂透代號
+        // count=>第一區的號碼要幾個
+        // no1=>第一區最大值
+        // no2=>第二區最大值 預設為0 因為後面可能用不到
+
+        function lotnum(item, count, no1, no2 = 0) {
+            let arr = [];
+            let i = 0;
+            do {
+                // 設定要從1-xx號
+                let num = allrandnum(no1);
+                // 檢查陣列是否存在此號碼
+                if (arr.indexOf(num) == -1) {
+                    // 沒有重複則加入陣列
+                    arr.push(num);
+                    i++
+                }
+            } while (i < count);
+
+            console.log('排序前:' + arr);
+            arr.sort((a, b) => {
+                return a - b;
+            });
+            console.log('排序後' + arr);
+
+            // 取亂數特別號
+            if (item == '1' || item == '2') {
+                let specialnum = allrandnum(no2);
+                console.log('特別號' + specialnum);
+            }
+        }
+
+
+        let type = prompt('請輸入樂透號代碼=>\n1.大樂透 2.威力採 3.今彩539');
+        if (type == '1') {
+            lotnum(1, 6, 49, 49);
+        } else if (type == '2') {
+            lotnum(2, 6, 38, 8);
+        } else if (type == '3') {
+            lotnum(3, 5, 39);
+        } else {
+            console.log('err 代號輸入錯誤')
+        }
+
+        // switch (type) {
+        //     case '1':
+        //         // 產生大樂透
+        //         lotnum('1',6,49,49);
+        //         break;
+        //     case '2':
+        //         // 產生威力採
+        //         lotnum('2',6,38,8);
+        //         break;
+        //     case '3':
+        //         // 產生今彩
+        //         lotnum('3',5,39);
+        //         break;
+        //     default:
+        //         console.log('err 代號輸入錯誤')
+        //         break;
+        // }
+
+    </script>
+</body>
+
+</html>
