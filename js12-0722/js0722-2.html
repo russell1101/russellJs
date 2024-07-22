@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 建立物件樣板
+        // 習慣物件樣板名稱字首大寫
+        // 1.建立物件樣板成員
+        function Sdata(no, name, htmlScore, cssScore, jsScore) {
+            // 類別與參數名稱可以同樣 但這裡為避免誤會用不同的
+            this.sid = no;
+            this.sName = name
+            this.html = htmlScore;
+            this.css = cssScore;
+            this.javasript = jsScore;
+            this.showData = function () {
+                console.log(`${this.sid}同學${this.sName}，成績總分為${this.html + this.css + this.javasript}分`);
+            }
+        }
+        // 2.使用物件樣板
+        // 傳值給物件樣板的參數
+        let s1 = new Sdata('s001', '王小明', 100, 100, 100);
+        // 呼叫物件樣板中的方法
+        s1.showData();
+        let s2 = new Sdata('s002', '張三', 99, 99, 99);
+        s2.showData();
+        let s3 = new Sdata('s003', '李四', 98, 98, 98);
+        s3.showData();
+
+
+        // 計算全班各科總分
+        console.log('html班級總成績:' + (s1.html + s2.html + s3.html));
+        console.log('css班級總成績:' + (s1.css + s2.css + s3.css));
+        console.log('javascript班級總成績:' + (s1.javasript + s2.javasript + s3.javasript));
+
+        // 方法二:陣列物件
+        // 宣告陣列
+        let arrObj = [s1, s2, s3];
+        console.log(arrObj);
+        // 可以連續宣告變數
+        let tothtml = 0, totcss = 0, totjs = 0;
+
+        for (let i = 0; i < arrObj.length; i++) {
+            tothtml = tothtml + arrObj[i].html;
+            // 要保留前一次的值做加總 也可以用簡化寫法如下
+            totcss += arrObj[i].css;
+            totjs += arrObj[i].javasript;
+        }
+
+        console.log(`html:${tothtml}`);
+        console.log(`css:${totcss}`);
+        console.log(`js${totjs}`);
+
+
+
+
+    </script>
+</body>
+
+</html>
