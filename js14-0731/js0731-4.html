@@ -8,18 +8,32 @@
 </head>
 
 <body>
+    <form action="">
+        <input type="text" id="txt1">
+        <input type="button" value="加入" id="btn">
+    </form>
     <ul>
         <li>HTML</li>
-        <!-- <li>CSS</li> -->
     </ul>
 
     <script>
-        // 1.建立新節點=>li
-        let newElm = document.createElement('li');
-        // 2.建立文字節點=>CSS
-        let newText = document.createTextNode('CSS');
-        // 3.將文字
-
+        // 取得按鈕事件
+        let myBtn = document.querySelector('#btn');
+        myBtn.addEventListener('click', () => {
+            // 取得文字方塊
+            let newList = document.querySelector('#txt1');
+            // 1.建立文字節點=>文字方塊內容 要取屬性value不然吃不到
+            let newText = document.createTextNode(newList.value);
+            // 2.建立新節點=>li
+            let newElm = document.createElement('li');
+            // 3.將文字節點加入到新節點
+            newElm.appendChild(newText);
+            // 4.取得要加入新節點的位置
+            // let getUL = document.getElementsByTagName('ul');
+            let getUL = document.querySelector('ul');
+            // 5.將新節點加入倒ul元素的最後一個子節點
+            getUL.appendChild(newElm);
+        })
 
     </script>
 </body>
