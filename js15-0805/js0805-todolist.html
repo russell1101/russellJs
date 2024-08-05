@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            margin-top: 100px;
+            margin-left: 50px;
+        }
+
+        ul {
+            width: 210px;
+        }
+
+        ul li {
+            position: relative;
+            padding: 12px 8px;
+            list-style: none;
+        }
+
+        .close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 12px 16px;
+        }
+
+        .close:hover {
+            background-color: #f44336;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <form action="">
+            <input type="text" id="myInput">
+            <input type="button" value="加入" id="btn">
+            <input type="button" value="刪除" id="btn2">
+        </form>
+
+        <ul id="myUL">
+            <li>HTML</li>
+            <li>CSS</li>
+        </ul>
+    </div>
+
+
+    <script>
+        // 現有的li項目後，新增刪除文字
+        var myNodelist = document.getElementsByTagName("li");
+        var i;
+        for (i = 0; i < myNodelist.length; i++) {
+            var span = document.createElement("span");
+            var txt = document.createTextNode("X");
+            span.className = "close";   //新增類別名稱
+            span.appendChild(txt);
+            myNodelist[i].appendChild(span);
+        }
+
+        // 刪除第一個li
+        btn2.addEventListener('click', () => {
+            // 取得第一個li
+            let removeElm = document.getElementsByTagName('li')[0];
+            // 找到父元素節點
+            let parentElm = removeElm.parentNode;
+            // 從父元素移除第一個li子節點
+            parentElm.removeChild(removeElm);
+        });
+
+        // 取得新增按鈕事件
+        let myBtn = document.querySelector('#btn');
+        myBtn.addEventListener('click', () => {
+
+            // 新增li元素
+            var li = document.createElement("li");
+            // 取得文字方塊的內容
+            var inputValue = document.getElementById("myInput").value;
+            // console.log(inputValue.trim().length);
+
+            // 新增文字節點
+            var t = document.createTextNode(inputValue);
+            // 將文字節點加入到新節點li
+            li.appendChild(t);
+            // 檢查文字方塊是否有內容
+            if (inputValue.trim() === '') {
+                alert("文字方塊不能空白!");
+            } else {
+                document.getElementById("myUL").appendChild(li);
+
+                // 動態新增加入時的X
+                var span = document.createElement("span");
+                var txt = document.createTextNode("X");
+                span.className = "close";   //新增類別名稱
+                span.appendChild(txt);
+                li.appendChild(span);
+            }
+            // 清除文字方塊內容
+            document.getElementById("myInput").value = "";
+        });
+
+        let close = document.getElementsByClassName('close');
+        for (let i = 0; i < close.length; i++) {
+            close[i].addEventListener('click', function () {
+                var removeLi = document.getElementsByTagName('li')[i];
+                var par = removeLi.parentNode;
+                par.removeChild(removeLi);
+            });
+        }
+
+    </script>
+</body>
+
+</html>
