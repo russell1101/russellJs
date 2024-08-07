@@ -68,15 +68,8 @@
             myNodelist[i].appendChild(span);
         }
 
-        // 刪除第一個li
-        btn2.addEventListener('click', () => {
-            // 取得第一個li
-            let removeElm = document.getElementsByTagName('li')[0];
-            // 找到父元素節點
-            let parentElm = removeElm.parentNode;
-            // 從父元素移除第一個li子節點
-            parentElm.removeChild(removeElm);
-        });
+// 按下x 刪除對應的li
+var close=-
 
         // 取得新增按鈕事件
         let myBtn = document.querySelector('#btn');
