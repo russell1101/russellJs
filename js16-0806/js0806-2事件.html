@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            border: 1px solid red;
+            width: 1200px;
+            /* 要auto均分一定要設寬度 不然會自動延展100%寬度 */
+            margin: 0 auto;
+            /* 讓marquee 在div中置中 */
+            text-align: center;
+        }
+
+        marquee {
+            background-color: yellow;
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!-- 跑馬燈效果 
+        behavior =>捲動方式
+        預設為scroll
+        alternate左右跑動
+        slode 只移動一次
+        -->
+        <!-- 移動速度 scrollamount一次跑動幾象素（預設6） -->
+        <!-- 初始方向 dirction  -->
+        <marquee behavior="alternate" scrollamount="10" onmouseover="stop();" onmouseout="start()">
+            跑馬燈文字效果
+        </marquee>
+    </div>
+</body>
+
+</html>

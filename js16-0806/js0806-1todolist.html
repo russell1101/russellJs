@@ -52,12 +52,15 @@
         <ul id="myUL">
             <li>HTML</li>
             <li>CSS</li>
+            <!-- 新增的項目會如同以下的形式 -->
+            <!-- <li>1 <span onclick="">x</span></li> -->
+
         </ul>
     </div>
 
 
     <script>
-        // 現有的li項目後，新增刪除文字
+        // 現有的li項目後，新增刪除文字span
         var myNodelist = document.getElementsByTagName("li");
         var i;
         for (i = 0; i < myNodelist.length; i++) {
@@ -68,8 +71,22 @@
             myNodelist[i].appendChild(span);
         }
 
-// 按下x 刪除對應的li
-var close=-
+        // 針對現有的項目 按下x 刪除對應的lis
+        var close = document.getElementsByClassName('close');
+        // console.log(close);
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                console.log('1');
+                // this等於close這個span 去找他的父母節點（就跟）li的節點一樣 因為span跟li是兄弟同層
+                var curLi = this.parentNode
+                // 不顯示 .style表示要寫css
+                curLi.style.display = 'none'
+                // 原css屬屬性寫法為 text-decortion 到js裡面寫需要變成 刪節號移除 第二個字首大寫
+                curLi.style.textDecoration = 'line-through';
+            }
+        }
+
+
 
         // 取得新增按鈕事件
         let myBtn = document.querySelector('#btn');
@@ -97,26 +114,17 @@ var close=-
                 span.className = "close";   //新增類別名稱
                 span.appendChild(txt);
                 li.appendChild(span);
-                for (let i = 0; i < close.length; i++) {
-                    close[i].addEventListener('click', function () {
-                        var removeLi = document.getElementsByTagName('li')[i];
-                        var par = removeLi.parentNode;
-                        par.removeChild(removeLi);
-                    });
+
+                // 新增刪除動作
+                span.onclick = function () {
+                    console.log('2');
+                    var curLi = this.parentNode;
+                    curLi.style.display = 'none'
                 }
             }
             // 清除文字方塊內容
             document.getElementById("myInput").value = "";
         });
-
-        let close = document.getElementsByClassName('close');
-        for (let i = 0; i < close.length; i++) {
-            close[i].addEventListener('click', function () {
-                var removeLi = document.getElementsByTagName('li')[i];
-                var par = removeLi.parentNode;
-                par.removeChild(removeLi);
-            });
-        }
 
     </script>
 </body>

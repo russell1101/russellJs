@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- onclick的時候呼叫函式 因為是js語法 故加上分號結尾 -->
+    <div onclick="changeP1();">按一下變更內容</div>
+    <p>第一段Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium nihil, vero natus harum consectetur
+        doloribus quas minus! Id architecto vitae error illum libero, veniam, accusantium laboriosam doloremque quam,
+        non aperiam.</p>
+
+    <h2 onclick="changeP2();">按一下變更標題二內容</h2>
+    <p id="p2" class="p2">第二段Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates libero atque, neque excepturi
+        necessitatibus natus ex ullam iusto, non, repellat possimus? Magnam ipsum nihil delectus. Alias maxime modi ex
+        nam.</p>
+
+    <script>
+        function changeP1() {
+            // 變更整個body內容 div與內文都會消失被取代
+            // document.body.innerHTML='Hello';
+
+            // 變更段落內容
+            document.querySelector('p').innerHTML = 'Hello';
+            // document.getElementsByTagName('p')[0].innerHTML = 'Hello';
+
+            // 只取得第一個段落 （非集合 故可以直接innerHTML做更改）
+            // console.log(document.querySelector('p'));
+            // 取得所有段落1 會取得所有節點p(集合)
+            // console.log(document.querySelectorAll('p'));
+            // 取得所有段落2 會取得所有標籤p(集合)
+            // console.log(document.getElementsByTagName('p'));
+        }
+
+        function changeP2() {
+            // 取得第二個段落 改變段落內容
+            // document.getElementsByTagName('p')[1].innerHTML='第二個段落更改了';
+
+            // 取得id＝改變段落內容
+            // document.getElementById('p2').innerHTML='取得id改變段落內容了';
+            // 取得class=>p2 改變段落內容
+            console.log(document.getElementsByClassName('p2'));
+            document.getElementsByClassName('p2')[0].innerHTML='取得class=>p2 更改段落內容';
+            document.querySelector('.p2').innerHTML='querySelector 取得class=>p2 更改段落內容'
+        }
+
+    </script>
+</body>
+
+</html>

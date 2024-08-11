@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item span {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="item">
+        <span onclick="changeToabout();">關於我</span>
+        <span onclick="changeToexps();">學經歷</span>
+        <span onclick="changeTocontact();">聯絡我</span>
+        <span onclick="changeTonews();">最新活動</span>
+    </div>
+    <!-- 分隔線 -->
+    <hr>
+    <div id="about">大家好 我是xxx</div>
+    <div id="exps" style="display: none;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos ullam ad tempora
+        sint unde fuga, dolores amet neque corporis molestias. Ea libero unde omnis totam, rerum nisi ducimus quaerat
+        natus.</div>
+    <div id="contact" style="display: none;">
+        email:d__1101@gmail.com <br>
+        mobile:
+    </div>
+    <div id="news" style="display: none;">
+        最新活動內容區
+    </div>
+
+    <script>
+        // 共用區
+        // 先在外面宣告變數空值 讓後面都可以使用
+        let aboutDiv = '';
+        let expsDiv = '';
+        let contactDiv = '';
+        let newsDiv = '';
+
+        // 建立function 讓每一次作動 都會把各區先display none
+        function getDiv() {
+            // 1.先取得操作標籤的div
+            aboutDiv = document.getElementById('about');
+            expsDiv = document.getElementById('exps');
+            contactDiv = document.querySelector('#contact');
+            newsDiv = document.querySelector('#news');
+
+            // 2.對標籤div操作
+            aboutDiv.style.display = 'none';
+            expsDiv.style.display = 'none';
+            contactDiv.style.display = 'none';
+            newsDiv.style.display = 'none';
+        }
+
+
+        // 點擊時呼叫的function
+        // 關於我
+        function changeToabout() {
+            getDiv();
+            console.log(aboutDiv);
+            aboutDiv.style.display = 'block';
+
+        }
+
+        function changeToexps() {
+            getDiv();
+            expsDiv.style.display = 'block';
+        }
+
+        function changeTocontact() {
+            getDiv();
+            contactDiv.style.display = 'block';
+        }
+
+        function changeTonews() {
+            getDiv();
+            newsDiv.style.display = 'block';
+        }
+
+    </script>
+</body>
+
+</html>
