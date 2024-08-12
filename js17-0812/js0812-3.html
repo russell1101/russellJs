@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 當游標離開文字方塊時 檢查書 入的內容不足5字時 顯示訊息-->
+    <form>
+        <label for="uid">會員編號</label>
+        <!-- size 文字方塊寬度 -->
+        <!-- maxlength 限定字數 -->
+        <input type="text" id="uid" size="15" maxlength="5"><br>
+
+        <label for="mobile">手機號碼</label>
+        <input type="text" id="mobile" size="15" maxlength="10"><br>
+
+        <!-- 不足字數 準備以span顯示 -->
+        <span id="errMsg"></span><br>
+        <input type="button" value="送出">
+    </form>
+
+    <script>
+        // 會員編號判斷
+        let uid = document.getElementById('uid');
+        uid.addEventListener('blur', function () {
+            // alert('游標移開了');  檢測用
+            let errMsg = document.getElementById('errMsg');
+
+            // 檢查文字方塊內容是否有5字 this等於uid
+            if (this.value.length != 5) {
+                // 若沒有 則顯示提示訊息給errMsg
+                errMsg.textContent = '會員編號必須是5個字';
+            } else {
+                errMsg.textContent = '';
+            }
+        });     
+
+        let mobile = document.getElementById('mobile');
+        mobile.addEventListener('blur', function () {
+            // alert('游標移開了');  檢測用
+            let errMsg = document.getElementById('errMsg');
+
+            // 檢查文字方塊內容是否有5字
+            if (this.value.length != 10) {
+                // 若沒有 則顯示提示訊息給errMsg
+                errMsg.textContent = '手機必須是10個字';
+            } else {
+                errMsg.textContent = '';
+            }
+        });
+    </script>
+</body>
+
+</html>

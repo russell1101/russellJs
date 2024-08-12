@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <label for="uid">會員編號</label>
+        <!-- size 文字方塊寬度 -->
+        <!-- maxlength 限定字數 -->
+        <input type="text" id="uid" size="15" maxlength="5"><br>
+
+        <label for="mobile">手機號碼</label>
+        <input type="text" id="mobile" size="15" maxlength="10"><br>
+
+        <span id="errMsg"></span><br>
+        <input type="button" value="送出">
+    </form>
+
+    <script>
+        // 會員編號
+        let uid= document.getElementById('uid');
+        uid.addEventListener('blur',function(e){
+            checkWordNum(e,5,'會員編號');
+        });
+
+        // 手機號碼
+        let mobile= document.getElementById('mobile');
+        mobile.addEventListener('blur',function(e){
+            checkWordNum(e,10,'手機號碼');
+        });
+
+        // 共用的檢查字數函式
+        function checkWordNum(e,numLength,lblName){
+            // 取得errMsg的位置
+            let errMsg=document.getElementById('errMsg');
+
+            // 檢查文字方塊內容是否有?個字
+            if(e.target.value.length!=numLength){
+                // 若沒有則顯示提示訊息給errMsg
+                // errMsg.textContent='會員編號必須是5個字';
+                errMsg.textContent=`${lblName}必須是${numLength}個字`;
+            }else{
+                // 若有 則清除提醒訊息給errMsg
+                errMsg.textContent='';
+            }
+        }
+    </script>
+</body>
+
+</html>
