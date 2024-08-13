@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            font-size: 32px;
+            color: green;
+        }
+
+        /* 預設樣式 在js時套入 */
+        .hot {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        /* 在css中沒辦法寫空字串 表恢復原先樣式 一定要設定 */
+        .restoreHot {
+            font-size: 32px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 使用style屬性 動態改變色彩 -->
+    <!-- 黃色處為函式名稱 -->
+    <p id="msg" onmouseover="changeColor();" onmouseout="restore();">Hello</p>
+    <script>
+        function changeColor() {
+            // 取得變色目標
+            let msg = document.getElementById('msg');
+            // 前景色
+            msg.style.color = 'red';
+            // 背景色
+            msg.style.backgroundColor = 'black';
+            // 套用css預先做好的樣式
+            msg.className = 'hot';
+        }
+
+
+        function restore() {
+            let msg = document.getElementById('msg');
+            // 前景色 空集合表示恢復原先預設色彩
+            msg.style.color = '';
+            // 背景色
+            msg.style.backgroundColor = '';
+            
+            // 方法1.套用預先設定好的還原樣式
+            // msg.className='restoreHot';
+
+            // 方法2.移除類別
+            msg.className = '';
+        }
+    </script>
+
+</body>
+
+</html>

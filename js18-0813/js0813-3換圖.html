@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            margin: 100px;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 換圖效果-->
+    <div class="wrap">
+        <div>
+            <img onmouseover="changeimg();" onmouseout="restoreimg();" id="img" src="../img/img1.jpg" alt="">
+        </div>
+    </div>
+
+    <script>
+        function changeimg() {
+            // 取得換圖目標
+            let img = document.getElementById('img');
+            // 換圖
+            img.src = '../img/img2.jpg';
+        }
+
+        function restoreimg() {
+            // 取得換圖目標
+            let img = document.getElementById('img');
+            // 還原
+            img.src='../img/img1.jpg';
+        }
+
+    </script>
+</body>
+
+</html>

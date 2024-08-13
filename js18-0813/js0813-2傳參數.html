@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div id="div" style="width: 100px; height: 100px; background-color: red;"></div><br>
+<!-- 整合前的 -->
+<button id="red" onclick="restore();">紅</button>
+<button id="blue" onclick="chgblue();">藍</button>
+<button id="green" onclick="chggreen();">綠</button>
+<hr>
+<!-- 整合後的 -->
+<button id="red" onclick="chgcolor('r');">紅</button>
+<button id="blue" onclick="chgcolor('b');">藍</button>
+<button id="green" onclick="chgcolor('g');">綠</button>
+
+<script>
+    // 整合前
+    function restore() {
+        let div = document.getElementById('div');
+        div.style.backgroundColor = 'red';
+    }
+
+    function chgblue() {
+        let div = document.getElementById('div');
+        div.style.backgroundColor = 'blue';
+    }
+
+    function chggreen() {
+        let div = document.getElementById('div');
+        div.style.backgroundColor = 'green';
+    }
+
+
+    // 整合上方函式為一個函式=>傳參數
+    function chgcolor(mycolor) {
+        let div = document.getElementById('div');
+        let colorName = '';
+        if (mycolor == 'r') {
+            colorName = 'red';
+        } else if (mycolor == 'b') {
+            colorName = 'blue';
+        } else if (mycolor == 'g') {
+            colorName = 'green';
+        }
+        div.style.backgroundColor = colorName;
+
+        // switch (mycolor) {
+        //     case 'r':
+        //         div.style.backgroundColor = 'red';
+        //         break;
+        //     case 'b':
+        //         div.style.backgroundColor = 'blue';
+        //         break;
+        //     case 'g':
+        //         div.style.backgroundColor = 'green';
+        //         break;
+        // }
+    }
+</script>
+</body>
+
+</html>
