@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 線上時鐘 -->
+    <div id="clock"></div>
+    <button type="button" id="btn">停止時鐘</button>
+
+    <script>
+        // 網頁載入時
+        window.addEventListener('load', function () {
+            // 每一秒要更新時間 setInterval(功能,毫秒)
+            let timer = window.setInterval(function () {
+                let clock = document.getElementById('clock');
+                // 更新時間  先做完date()括號起來 再做只限縮到當地時間toLocaleString
+                clock.textContent = '目前時間' + (new Date()).toLocaleString();
+            }, 1000)
+
+            // 停止時間 放在裡面是因為timer變數設定在內 外面吃不到變數
+            let btn = document.getElementById('btn');
+            btn.addEventListener('click', function () {
+                window.clearInterval(timer);
+            });
+        });
+    </script>
+</body>
+
+</html>

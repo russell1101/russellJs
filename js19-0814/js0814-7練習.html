@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="myForm">
+        <input type="checkbox" id="agree">我同意合約
+        <br>
+        <!-- 預留失敗文字 -->
+        <span id="errmsg"></span>
+        <br>
+        <input type="submit" value="提交">
+    </form>
+
+    <script>
+        let myForm = document.getElementById('myForm');
+        let agree = document.getElementById('agree');
+        let errmsg = document.getElementById('errmsg');
+
+        myForm.addEventListener('submit', function (e) {
+            // !表沒有勾選
+            if (!agree.checked) {
+                errmsg.textContent='你必須核取我同意合約';
+                errmsg.style.color='red';
+                e.preventDefault();
+            } else {
+                alert('已完成');
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

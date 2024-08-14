@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <label for="choose">選擇瀏覽器</label>
+        <select name="website" id="choose">
+            <option value="option1">請選擇瀏覽器</option>
+            <option value="https://www.google.com.tw/?hl=zh_TW">google</option>
+            <option
+                value="https://tw.yahoo.com/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAANtcCc4i4SwA5wzgUzfUYmfKROeOb13VaortifmyOl-Y-UjPtkHXhoFOZchHWOHAsMrTd_hF7qhKMcxSRnzx5bsjXhVmVItTNaJDzV5-ppEDwezq27TVUivrtc7kCIgp_cMgc6rBP5zlbqBgix18J_NITU6UnPUu_BZ1SA9yUYIT">
+                yahoo</option>
+            <option value="https://www.bing.com/">bing</option>
+        </select>
+    </form>
+
+    <script>
+        let choose = document.getElementById('choose');
+        choose.addEventListener('change', function () {
+                window.location.href = this.value;
+            });
+    </script>
+</body>
+
+</html>

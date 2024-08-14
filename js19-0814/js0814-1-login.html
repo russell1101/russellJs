@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li id="user_id">帳號:</li>
+            <li id="user_pw">密碼:</li>
+        </ul>
+    </div>
+
+    <script>
+        // 取得所有localstorage中的所有資料集合
+        let data = window.localStorage;
+        console.log(data);
+
+        //指定取出localstorage中的資料(帳號) getitem為方法
+        let uid = window.localStorage.getItem('user_id');
+        let login_id = document.getElementById('user_id');
+        user_id.textContent = `帳號:${uid}`;
+
+        // 取出密碼
+        let upw = window.localStorage.getItem('user_pw');
+        let user_pw = document.getElementById('user_pw');
+        user_pw.textContent = `密碼:${upw}`;
+
+
+        // 檢查帳密 是否為指定的數字時(ex管理者)
+        if (uid == 'test' && upw == 'test123') {
+            alert('登入成功');
+        } else {
+            alert('登入失敗');
+            window.location.href = './js0814-1.html';
+        }
+    </script>
+</body>
+
+</html>
