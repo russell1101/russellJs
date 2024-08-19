@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>新聞切版練習</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <script src="../javascripts/vendor.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+        integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: gray;
+        }
+
+
+        #wrap {
+            width: 80%;
+            background-color: rgb(255, 255, 255);
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        #wrap img {
+            width: 100%;
+        }
+
+
+        p {
+            font-size: 13px;
+            line-height: 20px;
+            color: #575757;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 18px;
+            line-height: 30px;
+            margin-top: 32px;
+            font-weight: 200;
+        }
+    </style>
+</head>
+
+<body>
+<!--參考網站 https://today.line.me/tw/v2/article/oq3l7K5 -->
+
+    <!-- 練習開始 -->
+    <div id="root"></div>
+    <script type="text/babel">
+
+        function App() {
+            return (<>
+                <div id='wrap'>
+                    <h1>掰了趙詠華！林俊逸爆新歡是64歲玉女歌手　私下互動曝光</h1>
+                    <img src="https://today-obs.line-scdn.net/0hR6Q1CSiJDRlsSB28uL1yTlQeAWhfLhcQTn0QfBofVn0UZEtPAyheekwcBjVJfElGTC9LfRlIUSsRfRkYVg/w1200"
+                        alt="" />
+                    <p>全民大劇團的團長編導謝念祖（左起），林淑容，林俊逸合照。（圖／媒體棧提供）</p>
+                    <h3>
+                        林俊逸昨（18）日下午演出全民大劇團的舞台劇《腦內失控的iTunes》最終場，沒學過鋼琴的他，每場都即興演奏，彈得都不一樣，有朋友想跟他借琴譜，他表示不是小氣不借，而是根本就沒有琴譜，他表示連後期來看整排的劇團好朋友也很喜歡，沒想到連一起合作演唱會的搭檔64歲林淑容都驚喜現身力挺，竟然不是他的緋聞女友趙詠華，林淑容還專程買票來看林俊逸的演出，令他相當感動。</h3>
+                </div>
+            </>)
+        }
+
+        // 簡寫法
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+    </script>
+
+    <!-- 練習結束 -->
+</body>
+
+</html>
