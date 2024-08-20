@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>版型建立</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <!-- boostrap -->
+    <script src="./js/vendor.js"></script>
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <!-- react -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- ajax -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+        integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+    <!-- 自己撰寫的css放這 -->
+    <!-- 自己的js -->
+</head>
+
+<body class="bg-lighter">
+    <div class="container main my-5">
+        <div class="row">
+            <main class="col post">
+                <div class="mb-4">
+                    <h1 class="mt-0 text-muted">版型建立</h1>
+                    <small>檔名：<code>01-createLayout.html</code></small>
+                </div>
+
+
+
+
+                <div id="root"></div>
+                <script type="text/babel">
+
+                    function Card(props) {
+                        // 資料解構 =>把物件或陣列內容提出來給指定變數(被解構的來源必須是原來元件中的屬性名稱)
+                        // 可以省去每次都要寫props的困擾 直接寫出title即可
+                        // console.log(props);
+                        const { title, price, desc, btnName } = props;
+
+                        return (
+                            <div className="card mb-4">
+
+                                <div className="card-header">
+                                    {/*有被解構的寫法*/}
+                                    <h4 className="my-0">{title}</h4>
+                                </div>
+
+                                <div className="card-body">
+                                    {/*<h1 className="card-title">{props.price}<small>/月</small></h1>*/}
+                                    {/*三元運算子*/}
+                                    {/*條件式?條件成立:條件不成立*/}
+                                    <h1 className="card-title">
+                                        {
+                                            // 檢查price是否為數值型別 ===嚴謹檢查
+                                            // 是 顯示價格與/月
+                                            // 不是 顯示字串內容
+
+                                            // 因為內容中包含三個 $+props+small標籤  故要寫出flagment
+                                            typeof props.price === 'number' ? <>${props.price}<small>/月</small></> : props.price
+                                        }
+                                    </h1>
+
+                                    <p>{props.desc}</p>
+                                    <button type="button" className="btn btn-outline-primary">{props.btnName}</button>
+                                </div>
+                            </div>
+                        )
+                    }
+
+
+                    const App = () => {
+                        // 建立陣列物件的資料 陣列裡可以包任何資料 包含物件{}
+                        const products = [
+                            {
+                                id: 1, //跑迴圈時 需要一個資料不會重複的key值
+                                title: '基本版',
+                                price: 1000,
+                                desc: '基本版說明區',
+                                btnName: '免費試用'
+                            },
+                            {
+                                id: 2, //跑迴圈時 需要一個資料不會重複的key值
+                                title: '進階版',
+                                price: 6000,
+                                desc: '進階版說明區',
+                                btnName: '進階版申請'
+                            },
+                            {
+                                id: 3, //跑迴圈時 需要一個資料不會重複的key值
+                                title: '企業版',
+                                price: '請洽客服',
+                                desc: '多人是用',
+                                btnName: '企業版申請'
+                            }
+                        ]
+                        return (
+                            <>
+                                <h2>租用方案</h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore molestiae
+                                    facere asperiores sit aspernatur laboriosam ipsum, excepturi fuga,
+                                    consequuntur cupiditate, nam a doloremque error adipisci nulla reiciendis
+                                    itaque odio voluptatibus.
+                                </p>
+
+                                {/*使用迴圈 將陣列物件中的料填入*/}
+                                {/*在return輸出時 要寫js要用{}刮起來*/}
+                                {
+                                    products.map((item) => {
+                                        // 呼叫卡片元件
+                                        // <Card title='基本版' price={1000} desc='基本版說明區' btnName='免費試用' />
+                                        // 改用陣列回傳值給元件 map為迴圈方法 products是我們設定的陣列 陣列中有3物件故迴圈跑3次 回傳的值會到item身上
+                                        return <Card title={item.title} price={item.price} desc={item.desc} btnName={item.btnName} />
+                                    })
+                                }
+                            </>
+                        );
+                    };
+
+                    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+                </script>
+
+
+
+
+                <!-- 一般html -->   
+                <hr>
+                <div>
+                    <h2>租用方案</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore molestiae
+                        facere asperiores sit aspernatur laboriosam ipsum, excepturi fuga,
+                        consequuntur cupiditate, nam a doloremque error adipisci nulla reiciendis
+                        itaque odio voluptatibus.
+                    </p>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4 class="my-0">基本版</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title">$1000<small>/月</small></h1>
+                            <p>基本版說明區</p>
+                            <button type="button" class="btn btn-outline-primary">免費試用</button>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4 class="my-0">進階版</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title">$6000<small>月</small></h1>
+                            <p>進階版說明區</p>
+                            <button type="button" class="btn btn-outline-primary">進階版申請</button>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4 class="my-0">企業版</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title">請洽客服<small></small></h1>
+                            <p>多人適用。。。</p>
+                            <button type="button" class="btn btn-outline-primary">
+                                企業版申請
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <script src="./js/vendor.js"></script>
+    <link rel="stylesheet" href="./stylesheets/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 步驟二：載入root元素 -->
+    <div id="root"></div>
+    <script type="text/babel">
+        function Card(props) {
+            // 檢查有無輸入年齡
+            let msgAge = '';
+            if (props.age == '') {
+                msgAge = '沒有提供年齡';
+            } else {
+                msgAge = props.age + '歲';
+            }
+
+            return (
+                <div className="card" style={{ width: '18rem', marginBottom: '20px' }}>
+                    <img src={props.imgUrl} className="card-img-top" alt="..." />
+                    <div className="card-body">
+                        <h5 className="card-title">姓名:{props.name}</h5>
+                        <p className="card-text">年齡:{msgAge}</p>
+                        <a href="#" className="btn btn-primary">{props.btnName}</a>
+                    </div>
+                </div>
+            )
+        }
+
+        // 步驟三：建立 React 元件
+        // 元件字首要大寫 而且有回傳值return
+
+        function App() {
+            return (
+                <>
+                    <Card
+                        imgUrl='https://plus.unsplash.com/premium_photo-1686728283945-b9e8028e85ce?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
+                        name='文'
+                        age='18'
+                        btnName='查看明細' />
+
+                    <Card
+                        imgUrl='https://plus.unsplash.com/premium_photo-1686728283945-b9e8028e85ce?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
+                        name='文'
+                        age='24'
+                        btnName='查看更多...' />
+
+                </>
+            )
+
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+    </script>
+
+</body>
+
+</html>
