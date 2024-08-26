@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+
+<body>
+    <h2>原生js</h2>
+    <input type="text" id="input" value="123">
+    <!-- 原生js -->
+    <script>
+
+        // 取得文字方塊
+        const input = document.getElementById('input');
+
+        // change事件 游標離開之後觸發
+        input.addEventListener('change', (e) => {
+            console.log('change事件被觸發了');  //檢查這個chage何時觸發
+            console.log('change事件' + e.target.value)
+        })
+
+        // keyup事件 鍵盤彈上來時觸發
+        input.addEventListener('keyup', (e) => {
+            console.log('keyup事件被觸發了');  //檢查keyup何時觸發
+            console.log('keyup事件' + e.target.value);
+        })
+    </script>
+
+
+    <hr>
+
+
+    <h2>React</h2>
+    <!-- React -->
+    <!-- input綁定的useState -->
+    <div id="root"></div>
+    <script type="text/babel">
+        // 解構 從react中解構出一個useState方法
+        const { useState } = React;
+        function App() {
+            // 定義狀態
+            const [text, setText] = useState('123');
+            return (
+                <div>
+                    {/*<input type="text" id="input" defaultValue="123" /> 原先表單應該更改的寫法value=>defaultValue*/}
+                    <input type="text" id="input" value={text} onChange={(e) => {
+                        // console.log(e.target.value) 原本的input處會沒有內容
+                        setText(e.target.value);
+                    }}
+                        // 失去焦點(游標) 在標籤內使用此註解方式
+                        onBlur={(e) => {
+                            console.log('onBlur');
+                            console.log(e.target.value);
+                        }}
+                        // 取得焦點(游標)
+                        onFocus={(e) => {
+                            console.log('onFocus');
+                            console.log(e.target.value);
+                        }}
+                    />
+                    {/*顯示文字方塊內容*/}
+                    {text}
+                </div>
+            )
+        }
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+
+    <button id="btn1">+</button>
+    <span id="showNum"></span>
+    <script>
+        let num = 0;
+        let btn1 = document.getElementById('btn1');
+        let showNum = document.getElementById('showNum');
+        btn1.addEventListener('click', () => {
+            num++; //num=num+1
+            console.log(num);
+            showNum.textContent = num;
+        })
+    </script>
+
+    <hr>
+
+    <!-- react寫法 -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        console.log(React)
+        console.log(ReactDOM);
+        // ReactHook-狀態useState
+        // 取得useState方法
+        const { useState } = React;
+        function App() {
+            // let num2=0
+            // 陣列中的參數
+            // 前者是一個變數
+            // 後者是一個寫入變數的方法
+            // useState(預設值)
+            const [num2, setNum2] = useState(1);
+            // JSX寫法
+            return (
+                <div>
+                    <button onClick={() => {
+                        // num2++; num2=num2+1
+                        // 使用setNum2寫入
+                        setNum2(num2 + 1);
+                    }}>+</button>
+                    {console.log(num2)}
+                    {num2}
+                </div>
+            )
+        }
+        // 渲染
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+    </script>
+</body>
+
+</html>

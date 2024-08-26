@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+    <!-- boostrap -->
+    <!-- boostrap卡片套件 https://bootstrap5.hexschool.com/docs/5.1/components/card/ -->
+    <script src="./js/vendor.js"></script>
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+        integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- 自己的css放這 -->
+</head>
+
+<body>
+    <!-- 步驟二：載入root元素 -->
+    <div id="root"></div>
+    <script type="text/babel">
+        // 查看react
+        // console.log(React);
+
+        // #1解構useState
+        const { useState } = React;
+
+        // #2查看useState(本身是一個函式)
+        // console.log(useState);
+
+        // #2 useState只能在元件內運作 否則會出錯
+        // const [text, setText]=useState('Hi');
+
+        function App() {
+            // #3 state是readonly(唯讀)
+            // 為了讓react知道資料已更新 所以會用另外一個方法告知
+            const [num, setNum] = useState(1);
+
+            // #4陣列
+            // 原先js寫法const arr=[1,2,3];
+            const [arr, setArr] = useState([1, 2, 3, 4, 5])
+
+
+            //#5 建立新增陣列資料函式
+            function addArrData() {
+                // 新增資料到陣列的最後方
+                // 先取得陣列資料 ...arr
+                // 得到長度後+1 直接當成新的值
+                setArr([...arr, arr.length + 1]);
+            }
+
+            //#5 建立移除陣列資料函式
+            function removeArrData() {
+                // 原生js 使用pop()來刪除陣列內容
+                // react找到最後一個位置刪除
+                setArr(arr.filter((item) => item !== arr.length));
+            }
+
+
+            // 兩個按鈕+與-
+            return (
+                <div>
+                    <button onClick={() => {
+                        // 這邊設定setNum函式比較特別 不用特別寫num=num+1 也不能直接寫num++
+                        setNum(num + 1);
+                    }}>+</button>{num}
+
+                    <button onClick={() => {
+                        setNum(num - 1);
+                    }}>-</button>{num}
+
+                    <hr />
+
+                    {/*讀取陣列資料到li*/}
+                    <ul>
+                        {/*react中要寫js必須{}刮起來*/}
+                        {
+                            // item陣列值
+                            // index為陣列索引編號 不會重複012...
+                            arr.map((item, index) => {
+                                return (
+                                    <li key={index}> {item}</li>
+                                )
+                            })
+                        }
+                    </ul>
+                    {/*建立在#5*/}
+                    <button onClick={addArrData}>新增陣列資料</button>
+                    <button onClick={removeArrData}>移除陣列資料</button>
+                </div >
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+</body>
+
+</html>

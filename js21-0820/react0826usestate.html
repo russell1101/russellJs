@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+    <!-- boostrap -->
+    <!-- boostrap卡片套件 https://bootstrap5.hexschool.com/docs/5.1/components/card/ -->
+    <script src="./js/vendor.js"></script>
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+        integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- 自己的css放這 -->
+</head>
+
+<body>
+    <!-- 步驟二：載入root元素 -->
+    <div id="root"></div>
+    <script type="text/babel">
+        // 建立一個搜尋功能
+        // #1取出useState
+        const { useState } = React;
+
+        // #5建立一個搜尋元件 第一個變數、第二個變數 名稱可以跟原本不同 只是呼叫的時候名稱也要相同設定
+        // 元件建立也可以用建立變數的方式 const SearchBox=({ text, onSearchHandler })=> {}
+        function SearchBox({ text, onSearchHandler }) {
+            return (
+                // console.log('SearchBox元件被呼叫了')
+                <>
+                    < label htmlFor="search2" > 搜尋</ label>
+                    <input type="text"
+                        id='search2'
+                        className=''
+                        value={text}
+                        onChange={onSearchHandler} />
+                </>
+            )
+        }
+
+
+        function App() {
+            // #2定義狀態
+            const [text, setText] = useState('請輸入任何字');
+
+            // #建立一個更新資料的函式
+            const onSearchHandler = (e) => {
+                setText(e.target.value);
+            }
+
+            // #4加上[搜尋]標籤與樣式
+            return (
+                <div>
+                    <label htmlFor="search">搜尋</label>
+                    <input type="text"
+                        id='search'
+                        className=''
+                        value={text}
+                        onChange={onSearchHandler} />
+                    {text}
+
+                    <hr />
+
+                    {/*#6渲染searchbox元件*/}
+                    <SearchBox text={text} onSearchHandler={onSearchHandler} />
+                    {/*#7顯示更新後內容*/}
+                    {text}
+                </div>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+</body>
+
+</html>
