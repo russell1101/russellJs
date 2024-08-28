@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+        integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- 自己的css放這 -->
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+
+        function App() {
+            // 要建立共用變數 用useState
+            const [count, setCount] = useState(0);
+            // 建立一個不會變動的變數
+            const [num, setNum] = useState(1);
+
+            // 第一種
+            useEffect(() => {
+                console.log(2)
+                // 更新頁面標提
+                document.title = `按鈕次數${count}`
+            });
+
+            // 第二種
+            // 使用空陣列
+            // 只有初始化會被執行
+            useEffect(() => {
+                console.log(3)
+            }, []);
+
+            // 第三種
+            // 使用{有內容或變數}的陣列
+            // 初始化+陣列內容被改變時 執行
+            useEffect(() => {
+                console.log(4)
+            }, [num]);
+
+
+            return (
+                <>
+                    <p>按了幾次按鈕:{count}次</p>
+                    <button onClick={() => {
+                        console.log(1);
+                        setCount(count + 1);
+                    }}>Click</button>
+                </>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+</body>
+
+</html>

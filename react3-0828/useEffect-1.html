@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+        integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- 自己的css放這 -->
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        // 解構出來
+        const { useEffect } = React;
+
+
+        function App() {
+            // 必須要在component內
+            // useEffect(方法)被觸發的時機點 是在渲染之後 故
+            useEffect(() => {
+                console.log(2);
+                document.title = 'useEffect更改了title';
+                
+                document.getElementById('btn2').addEventListener('click', () => {
+                    console.log(3);
+                    document.title = '按鈕2更新title';
+                });
+            });
+
+            // jsx語法
+            return (
+                <>
+                    <h1>Hello, React</h1>
+                    <button onClick={() => {
+                        console.log(1);
+                        document.title = '按鈕更改後title';
+                    }}>更新title</button>
+
+                    <button id='btn2'>按鈕2</button>
+                </>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+</body>
+
+</html>
