@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>useEffect 基礎介紹</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <script src="./javascripts/vendor.js"></script>
+
+    <!-- react -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- boostrap -->
+    <link rel="stylesheet" href="./stylesheets/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <!-- 非同步讀取資料套件=>asios  也可以放在head區-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+
+    <style>
+        .img-cover {
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body class="bg-lighter">
+    <div class="container main my-5">
+        <div class="row">
+            <main class="col post">
+                <!-- 章節標題 -->
+                <div class="mb-4">
+                    <h1 class="mt-0 text-muted">useEffect 基礎介紹</h1><small>檔名：<code>04.html</code></small>
+                </div>
+
+
+                <div id="root"></div>
+
+                <script type="text/babel">
+                    const { useState, useEffect } = React;
+                    const api = 'https://api.unsplash.com/search/photos/';
+                    const accessKey = 't4TYjl8kBxoMcfZ8tOHTq88H_X6orpF5b7n2n9jcpn4';
+                    // 驗證是否能成功連上api
+                    // https://api.unsplash.com/photos/?client_id=YOUR_ACCESS_KEY
+
+
+
+                    // 搜尋列的元件  {}為解構
+                    const SearchBox = ({ onSearchHandler, filterString }) => {
+                        return
+                        <div>
+                            <label htmlFor="filter">搜尋</label>
+                            <input type="text" id="filter" className="form-control mb-3"
+                                value={filterString}
+                                onChange={onSearchHandler}
+                            />
+                        </div>
+                    }
+
+                    // 卡片元件
+                    function Card(props) {
+                        return (
+                            <div className="card">
+                                <img src={props.urls_regular} className="card-img-top img-cover" alt="..." height='400' width='100%' />
+                            </div>
+                        )
+                    }
+
+
+                    const App = () => {
+                        console.log(1);
+
+                        const [filterString, setFilterString] = useState('');
+                        const onSearchHandler = (e) => {
+                            setFilterString(e.target.value);
+                        }
+
+                        // #3a 建立列表用的陣列
+                        const [jsonData, setJsonData] = useState([]);
+
+
+
+                        // #1 建立非同步方法時，會因為渲染的關係不斷重複觸發 內容一有更動就會重新搜尋
+                        // const getPhotos = async () => {
+                        //     // 手寫程式測試是否能成功連上api
+                        //     // console.log(`${api}?client_id=${accessKey}&query=${filterString}=food`);
+                        //     const result = await axios.get(`${api}?client_id=${accessKey}&query=${filterString}=food`); //非同步讀取資料
+                        //     console.log(result);
+                        // }
+                        // getPhotos();
+
+
+                        // #2 useEffect 若後加空陣列 只會在初始化時被執行
+                        useEffect(() => {
+                            const getPhotos = async () => {
+                                // 手寫程式測試是否能成功連上api
+                                // console.log(`${api}?client_id=${accessKey}&query=${filterString}=food`);
+                                const result = await axios.get(`${api}?client_id=${accessKey}&query=${filterString}`); //非同步讀取資料
+                                console.log(result);
+
+                                // #3b 更新列表 =>將發出請求的結果更新到列表陣列 console出來結果的路徑
+                                setJsonData(result.data.results);
+
+                            }
+                            getPhotos();
+                        }, []);
+                                                            
+
+                        return (
+                            <div>
+                            {console.log(2)}
+                            <SearchBox onSearchHandler={onSearchHandler} filterString={filterString} />
+
+                            {/*使用boostrap 建立一列兩欄的格線系統*/}
+                            <div className="row row-cols-2 g-3">
+                                {
+                                    jsonData.map((item) => {
+                                        return (
+                                            <div className='col' key={item.id}>
+                                                <Card urls_regular={item.urls.regular} />
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+
+
+                        </div>)
+                    }
+
+                    ReactDOM
+                        .createRoot(document.querySelector('#root'))
+                        .render(<App />)
+                </script>
+            </main>
+        </div>
+    </div>
+
+</body>
+
+</html>
