@@ -60,7 +60,6 @@
                             const { location } = result.data.cwaopendata.dataset;
                             console.log(location);
 
-
                             //寫入jsonData 上面建立的變數
                             setJsonData(location);
                         }
@@ -73,7 +72,7 @@
                                 <ul>
                                     {/*寫js所以大括號刮起來*/}
                                     {
-                                        jsonData.map((citiy) => {
+                                        jsonData.map((city) => {
                                             return (
                                                 <li key={city.locationName}>{city.locationName}</li>
                                             )

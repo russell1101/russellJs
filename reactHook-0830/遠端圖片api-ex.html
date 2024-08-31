@@ -12,9 +12,7 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <!-- boostrap -->
-    <link rel="stylesheet" href="./stylesheets/all.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
 
     <!-- 非同步讀取資料套件=>asios  也可以放在head區-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
@@ -49,21 +47,21 @@
 
                     // 搜尋列的元件  {}為解構
                     const SearchBox = ({ onSearchHandler, filterString }) => {
-                        return
+                        return(
                         <div>
                             <label htmlFor="filter">搜尋</label>
                             <input type="text" id="filter" className="form-control mb-3"
                                 value={filterString}
                                 onChange={onSearchHandler}
                             />
-                        </div>
+                        </div>)
                     }
 
                     // 卡片元件
-                    function Card(props) {
+                    const Card = ({ item }) => {
                         return (
                             <div className="card">
-                                <img src={props.urls_regular} className="card-img-top img-cover" alt="..." height='400' width='100%' />
+                                <img src={item.urls.regular} className="card-img-top img-cover" alt="..." height='400' width='100%' />
                             </div>
                         )
                     }
@@ -71,14 +69,15 @@
 
                     const App = () => {
                         console.log(1);
+                        const [filterString, setFilterString] = useState('dog');
 
-                        const [filterString, setFilterString] = useState('');
+                        // #3a 建立列表用的陣列
+                        const [jsonData, setJsonData] = useState([]);
+
                         const onSearchHandler = (e) => {
                             setFilterString(e.target.value);
                         }
 
-                        // #3a 建立列表用的陣列
-                        const [jsonData, setJsonData] = useState([]);
 
 
 
@@ -102,32 +101,30 @@
 
                                 // #3b 更新列表 =>將發出請求的結果更新到列表陣列 console出來結果的路徑
                                 setJsonData(result.data.results);
-
                             }
                             getPhotos();
                         }, []);
-                                                            
+
 
                         return (
                             <div>
-                            {console.log(2)}
-                            <SearchBox onSearchHandler={onSearchHandler} filterString={filterString} />
+                                {console.log(2)}
+                                <SearchBox onSearchHandler={onSearchHandler} filterString={filterString} />
 
-                            {/*使用boostrap 建立一列兩欄的格線系統*/}
-                            <div className="row row-cols-2 g-3">
-                                {
-                                    jsonData.map((item) => {
-                                        return (
-                                            <div className='col' key={item.id}>
-                                                <Card urls_regular={item.urls.regular} />
-                                            </div>
-                                        )
-                                    })
-                                }
+                                {/*使用boostrap 建立一列兩欄的格線系統*/}
+                                <div className="row row-cols-2 g-3">
+                                    {
+                                        jsonData.map((item) => {
+                                            return (
+                                                <div className='col' key={item.id}>
+                                                    <Card item={item} />
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
                             </div>
-
-
-                        </div>)
+                        )
                     }
 
                     ReactDOM
@@ -137,7 +134,9 @@
             </main>
         </div>
     </div>
-
+    <!-- boostrap -->
+    <link rel="stylesheet" href="./stylesheets/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </body>
 
 </html>
