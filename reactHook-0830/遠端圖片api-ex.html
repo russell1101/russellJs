@@ -39,7 +39,7 @@
                 <div id="root"></div>
 
                 <script type="text/babel">
-                    const { useState, useEffect } = React;
+                    const { useState, useEffect, useRef } = React;
                     const api = 'https://api.unsplash.com/search/photos/';
                     const accessKey = 't4TYjl8kBxoMcfZ8tOHTq88H_X6orpF5b7n2n9jcpn4';
                     // 驗證是否能成功連上api
@@ -49,14 +49,18 @@
 
                     // 搜尋列的元件  {}為解構
                     const SearchBox = ({ onSearchHandler, filterString }) => {
-                        return
-                        <div>
-                            <label htmlFor="filter">搜尋</label>
-                            <input type="text" id="filter" className="form-control mb-3"
-                                value={filterString}
-                                onChange={onSearchHandler}
-                            />
-                        </div>
+                        return (
+                            <div>
+                                <label htmlFor="filter">搜尋</label>
+                                <input type="text" id="filter" className="form-control mb-3"
+                                    // value={filterString}
+                                    // onChange={onSearchHandler}
+                                    defaultValue={filterString}
+                                    // 換成鍵盤事件後
+                                    onKeyPress={onSearchHandler}
+                                />
+                            </div>
+                        )
                     }
 
                     // 卡片元件
@@ -70,17 +74,65 @@
 
 
                     const App = () => {
-                        console.log(1);
+                        // console.log(1);
 
                         const [filterString, setFilterString] = useState('');
-                        const onSearchHandler = (e) => {
-                            setFilterString(e.target.value);
-                        }
 
                         // #3a 建立列表用的陣列
                         const [jsonData, setJsonData] = useState([]);
+                        // 加入讀取
+                        // 改用傳參考方式(變數的相同位置(記憶體位置))
+                        const [isLoading, setIsLoading] = useState(false);
+
+                        // 使用useRef建立變數(比起一般直接給預設值 這種寫法可以讓之後再變更變數時 useRef會有一個監測效果)
+                        const currentPage = useRef(1);  //只有一個成員(current)
+
+                        const onSearchHandler = (e) => {
+                            // 查看事件觸發時的相關資訊
+                            // console.log(e);
+                            // 半段是否按了enter
+                            if (e.key === 'Enter') {
+                                // 更新資料
+                                setFilterString(e.target.value)
+                            }
+                        }
+
+                        // 把getPhoto轉成獨立函式 並取得特定頁數  給預設值第一頁 有傳參數會覆蓋
+                        // 剩餘次數
+                        const [count, setCount] = useState(50);
+                        const getPhotos = async (page = 1, isNew = true) => {
+                            // 若無發生錯誤TRY 發生錯誤進CATCH(除錯的方法)
+                            try {
+                                // 取得圖片前先寫入 (變更布林值的方式)
+                                setIsLoading(true);
+                                // 加入關鍵字(query)
+
+                                // 手寫程式測試是否能成功連上api
+                                // console.log(`${api}?client_id=${accessKey}&query=${filterString}=food`);
+                                const result = await axios.get(`${api}?client_id=${accessKey}&query=${filterString}&page=${page}`); //非同步讀取資料
+                                // console.log(result);
 
 
+                                // #3b 更新列表 =>將發出請求的結果更新到列表陣列 console出來結果的路徑
+                                // setJsonData(result.data.results);
+                                setJsonData((preData) => {
+                                    // 更新資料
+                                    if (isNew) {
+                                        return [...result.data.results]  //當前這一頁
+                                    }
+                                    return [...preData, ...result.data.results]  //載入新的頁面 同時保留舊的
+                                });
+
+                                // 每次發出請求後 更新次數  因為變數中間有底線 故用['']包起來
+                                setCount(result.headers['x-ratelimit-remaining']);
+
+                                // 更新頁數 usetate會隨著畫面渲染改變 current只會在這裡做改變
+                                currentPage.current = page;
+
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        }
 
                         // #1 建立非同步方法時，會因為渲染的關係不斷重複觸發 內容一有更動就會重新搜尋
                         // const getPhotos = async () => {
@@ -91,43 +143,60 @@
                         // }
                         // getPhotos();
 
+                        // #2 useEffect 
+                        // 建立一個列表高度 預設為空值 滑鼠滾動時會產生變化
+                        const listRef = useRef(null);
 
-                        // #2 useEffect 若後加空陣列 只會在初始化時被執行
                         useEffect(() => {
-                            const getPhotos = async () => {
-                                // 手寫程式測試是否能成功連上api
-                                // console.log(`${api}?client_id=${accessKey}&query=${filterString}=food`);
-                                const result = await axios.get(`${api}?client_id=${accessKey}&query=${filterString}`); //非同步讀取資料
-                                console.log(result);
+                            getPhotos(1, true);
+                            // 建立滾動監聽函式
+                            const scrollEvent = () => {
+                                // console.log('scroll', window.scrollY)  //查看滾到哪裡
+                                // console.dir(list.current);
 
-                                // #3b 更新列表 =>將發出請求的結果更新到列表陣列 console出來結果的路徑
-                                setJsonData(result.data.results);
+                                // offsetHeight=>margin+padding+border
+                                // innerHeight=>margin+padding
+                                // 取得每頁的最後一張圖接近的位置
+                                const height = (listRef.current.offsetHeight + listRef.current.offsetTop) - window.innerHeight;
 
+                                // 假如(沒有載入圖片) 並且 (垂直卷軸位置超過目前列表圖片的高度) 則執行下一頁
+                                if (!isLoading && window.scrollY > height) {
+                                    // console.log('換頁了');
+                                    // 因為換頁了 所以醉心頁數要更新
+                                    currentPage.current = currentPage.current + 1;
+                                    // 因為只是更新頁數 所以呼叫圖片列表時 同一個關鍵字的資料不用覆蓋
+                                    getPhotos(currentPage.current, false);
+                                }
                             }
-                            getPhotos();
-                        }, []);
-                                                            
+                            // 檢測捲動間聽
+                            window.addEventListener('scroll', scrollEvent);
+                            // 移除監聽(確保每次捲動時 位置資料是正確的)
+                            return () => {
+                                window.removeEventListener('scroll', scrollEvent);
+                            }
+
+                        }, [filterString]);  //若後加空陣列 只會在初始化時被執行
+                        // 陣列條件改變時 被執行
 
                         return (
                             <div>
-                            {console.log(2)}
-                            <SearchBox onSearchHandler={onSearchHandler} filterString={filterString} />
+                                {/*console.log(2)*/}
+                                <SearchBox onSearchHandler={onSearchHandler} filterString={filterString} />
+                                <p>剩餘請求次數:{count}</p>
 
-                            {/*使用boostrap 建立一列兩欄的格線系統*/}
-                            <div className="row row-cols-2 g-3">
-                                {
-                                    jsonData.map((item) => {
-                                        return (
-                                            <div className='col' key={item.id}>
-                                                <Card urls_regular={item.urls.regular} />
-                                            </div>
-                                        )
-                                    })
-                                }
-                            </div>
-
-
-                        </div>)
+                                {/*使用boostrap 建立一列兩欄的格線系統*/}
+                                <div className="row row-cols-2 g-3" ref={listRef}>
+                                    {
+                                        jsonData.map((item) => {
+                                            return (
+                                                <div className='col' key={item.id}>
+                                                    <Card urls_regular={item.urls.regular} />
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>)
                     }
 
                     ReactDOM
