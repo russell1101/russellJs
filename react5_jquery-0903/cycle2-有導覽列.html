@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- 自己的css放這 -->
+    <style>
+        img {
+            width: 500px;
+            height: 450px;
+        }
+
+        .box {
+            border: 5px solid red;
+            width: 500px;
+            height: 450px;
+            position: relative;
+        }
+
+        /* 輪播導覽列 */
+        #nav {
+            position: absolute;
+            z-index: 99;
+            right: 20px;
+            bottom: 20px;
+        }
+
+        #nav a {
+            /* block會是垂直排列 inline表示水平 */
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            /* font-size: 20px; */
+            /* 若不要數字的話 */
+            font-size: 0;
+            width: 20px;
+            height: 20px;
+            /* 文字水平置中 */
+            text-align: center;
+            /* 行高跟高度一樣就會高度置中 */
+            line-height: 20px;
+            border-radius: 50%;
+            margin-left: 20px;
+            border: 1px solid #fff;
+        }
+
+        /* 作用中的數字底色改變 */
+        #nav a.activeSlide {
+            background-color: bisque;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useEffect } = React;
+
+        function App() {
+            // 撰寫jquery
+            // $(document).ready(function () {
+
+            // });
+
+            // 包在useeffect中就可以確保render渲染後才會執行裡面的動作
+            useEffect(() => {
+                // 簡寫寫法
+                $(function () {
+                    //after表示nav再圖後面顯示 不直接寫在html是因為屆時要增減圖片 用pager會直接更新導覽列
+                    $('#imgCycle').after('<div id="nav"></nav>').cycle({
+                        fx: 'curtainX',  //輪播方式
+                        sync: false,
+                        delay: 2000,  //第一次第一章圖停留時間
+                        timeout: 1000,  //輪播速度
+                        pager: '#nav',   //執行已建立好的css樣式
+                    });
+                });
+            });
+
+
+            return (
+                <div>
+                    <h1>自動輪播+輪播紐</h1>
+                    <div class="box">
+                        <div id='imgCycle'>
+                            <img src="../img/img1.jpg" alt="" />
+                            <img src="../img/img2.jpg" alt="" />
+                            <img src="../img/img3.jpg" alt="" />
+                            <img src="../img/img4.jpg" alt="" />
+                            <img src="../img/img5.jpg" alt="" />
+                        </div>
+                        {/*<nav>導覽列</nav>*/}
+                    </div>
+                </div>
+
+
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+    <!-- jquery主程式 -->
+    <script src="./jQuery1-0903/js/jquery-1.11.3.min.js"></script>
+    <!-- 輪播效果js -->
+    <script src="./jQuery1-0903/js/jquery.cycle.all.js"></script>
+</body>
+
+</html>

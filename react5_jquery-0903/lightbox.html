@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <!-- 燈箱效果css -->
+    <link href="./jQuery1-0903/lightbox/css/lightbox.css" rel="stylesheet" />
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- 自己的css放這 -->
+    <style>
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+
+        function App() {
+
+
+// https://lokeshdhakar.com/projects/lightbox2/#getting-started 可以去網站看使用方法
+            return (
+                <div>
+                    <h1>燈箱效果</h1>
+                    <a href="../img/img1.jpg" data-lightbox="group" data-title="PHOTO1">
+                        <img src="../img/img1.jpg" alt="" />
+                    </a>
+
+                    <a href="../img/img2.jpg" data-lightbox="group" data-title="PHOTO2">
+                        <img src="../img/img2.jpg" alt="" />
+                    </a>
+
+                    <a href="../img/img3.jpg" data-lightbox="group" data-title="PHOTO3">
+                        <img src="../img/img3.jpg" alt="" />
+                    </a>
+                </div>
+
+
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+    <!-- jquery主程式 -->
+    <script src="./jQuery1-0903/js/jquery-1.11.3.min.js"></script>
+    <!-- 燈箱效果js -->
+    <script src="./jQuery1-0903/lightbox/js/lightbox.js"></script>
+</body>
+
+</html>
