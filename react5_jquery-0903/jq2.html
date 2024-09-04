@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .box {
+            display: block;
+            background-color: #ccc;
+            width: 150px;
+            text-align: center;
+            padding: 15px 0;
+            /*垂直置中*/
+            /* 要字或背景單獨transition 若全部都要寫all */
+            transition: color .35s ease-in-out;
+        }
+
+        /* 背景變色 */
+        .bgColor {
+            background-color: rgb(110, 98, 83);
+            color: white;
+        }
+
+        .content {
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all .35s linear;
+        }
+
+        .scale {
+            transform: scale(1.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useEffect } = React;
+
+        function App() {
+            useEffect(() => {
+
+                // 背景變色
+                $(function () {
+                    // 新增類別方法:addClass()
+                    $('#cssAnim').hover(function () {
+                        $(this).addClass('bgColor');
+                    }, function () {
+                        // 刪除類別方法:removeClass()
+                        $(this).removeClass('bgColor');
+                    })
+
+                    // 圖片scale變化
+                    $(function () {
+                        $('#img').hover(function () {
+                            $(this).addClass('scale');
+                        }, function () {
+                            $(this).removeClass('scale');
+                        })
+                    })
+                })
+            }, []);
+
+
+
+            return (
+                <>
+                    <h1>動態新增刪除類別</h1>
+                    <a href="#" className='box' id='cssAnim'>背景變色</a>
+                    <figure className='content'><img id='img' src="../img/img1.jpg" alt="" /></figure>
+
+                </>
+            )
+        };
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+    <!-- jquery主程式 -->
+    <script src="./jQuery1-0903/js/jquery-1.11.3.min.js"></script>
+
+</body>
+
+</html>

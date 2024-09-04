@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- 自己的css放這 -->
+    <style>
+        #carousel {
+            background-color: #ccc;
+            padding: 10px 20px 10px 0;
+        }
+
+        #carousel img {
+            vertical-align: bottom;
+            /*處理圖片下方預設留白取消*/
+            width: 150px;
+            height: 100px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useEffect } = React;
+
+        function App() {
+            useEffect(() => {
+                $(function () {
+                    $('#carousel').jCarouselLite({
+                        auto: 1200,  //多久時間輪播一次
+                        scroll: 2,   //每次捲動的張數
+                        visible: 5,  //顯示的張數
+                        speed: 1000, //輪播速度
+                    })
+                })
+
+            });
+
+
+            return (
+                <>
+                    <h1>旋轉木馬</h1>
+                    <div id='carousel'>
+                        <ul>
+                            <li><img src="../img/img1.jpg" alt="" /></li>
+                            <li><img src="../img/img2.jpg" alt="" /></li>
+                            <li><img src="../img/img3.jpg" alt="" /></li>
+                            <li><img src="../img/img4.jpg" alt="" /></li>
+                            <li><img src="../img/img5.jpg" alt="" /></li>
+                            <li><img src="../img/img6.jpg" alt="" /></li>
+                            <li><img src="../img/img7.jpg" alt="" /></li>
+                        </ul>
+                    </div>
+                </>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+    <!-- jquery主程式 -->
+    <script src="./jQuery1-0903/js/jquery-1.11.3.min.js"></script>
+    <!-- 輪播效果js -->
+    <script src="./jQuery1-0903/js/jquery.jcarousellite.min.js"></script>
+</body>
+
+</html>

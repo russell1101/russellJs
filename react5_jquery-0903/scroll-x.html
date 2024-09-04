@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- 自己的css放這 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            width: 100%;
+            height: 45px;
+            background-color: #333;
+            text-align: center;
+            position: fixed;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 30px;
+        }
+
+        #container {
+            /* border: 1px solid red; */
+            width: 960px;
+            height: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        section {
+            width: 960px;
+            height: 600px;
+            float: left;
+            /*原本是垂直排列 飄起來後往上並且往右排列*/
+        }
+
+        #m1 {
+            background-color: antiquewhite;
+        }
+
+        #m2 {
+            background-color: rgb(216, 250, 215);
+        }
+
+        #m3 {
+            background-color: rgb(227, 215, 250);
+        }
+
+        /*總寬度需要大於所有section寬度*/
+        #wrapper {
+            width: 3000px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useEffect } = React;
+
+        function App() {
+            useEffect(() => {
+                $(function () {
+                    $('nav').localScroll({
+                        target: '#container',
+                        axis: 'x',  //水平 可改成垂直
+                        duration: '800' //時間
+                    })
+                });
+            });
+
+
+            return (
+                <>
+                    <h1>水平滑動效果</h1>
+                    <nav>
+                        <a href="#m1">menu1</a>
+                        <a href="#m2">menu2</a>
+                        <a href="#m3">menu3</a>
+                    </nav>
+
+                    {/*container 只是為了限制 可視範圍  wrapper是要包全部內容*/}
+                    <div id='container'>
+                        <div id='wrapper'>
+                            <section id='m1'></section>
+                            <section id='m2'></section>
+                            <section id='m3'></section>
+                        </div>
+                    </div>
+                </>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+    <!-- jquery主程式 -->
+    <script src="./jQuery1-0903/js/jquery-1.11.3.min.js"></script>
+    <!-- 滑動js -->
+    <script src="./jQuery1-0903/js/jquery.scrollTo.min.js"></script>
+    <script src="./jQuery1-0903/js/jquery.localScroll.min.js"></script>
+</body>
+
+</html>

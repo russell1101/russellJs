@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .fadeBtn {
+            display: block;
+            width: 200px;
+            height: 80px;
+            background-color: #ddd;
+            font-size: 20px;
+            text-align: center;
+            line-height: 80px;
+            border-radius: 5px;
+            border: 2px solid #fff;
+            box-shadow: 0 0 3px #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useEffect } = React;
+
+        function App() {
+            useEffect(() => {
+                $(function () {
+                    $('.fadeBtn').hover(function () {
+                        // 滑鼠移入時淡出且放大文字
+                        $(this).animate({ opacity: '0.5', fontSize: '24px' }, 300);  /*300為速率*/
+                    }, function () {
+                        // 滑鼠移出還原
+                        $(this).animate({ opacity: '1', fontSize: '20px' }, 300)
+                    });
+                })
+            }, []);
+
+
+
+
+            return (
+                <>
+                    <h1>animate方法</h1>
+                    <a href="#" className='fadeBtn'>按鈕</a>
+
+
+                </>
+            )
+        };
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+    <!-- jquery主程式 -->
+    <script src="./jQuery1-0903/js/jquery-1.11.3.min.js"></script>
+
+</body>
+
+</html>

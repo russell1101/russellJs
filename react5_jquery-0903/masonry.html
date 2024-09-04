@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- 自己的css放這 -->
+    <style>
+        #container {
+            /*因應左右留白平均*/
+            margin: auto;
+        }
+
+        .box {
+            width: 300px;
+            margin-bottom: 5px;
+        }
+
+        .box img {
+            width: 300px;
+            vertical-align: bottom;
+            /*處理圖片下方預設留白取消*/
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useEffect } = React;
+
+        function App() {
+            useEffect(() => {
+                $(function () {
+                    $('#container').imagesLoaded(function () {
+                        $('#container').masonry({
+                            isFitWidth: true  //做又留白平均 (水平置中) 但必須搭配最外框的container  
+                        })
+                    });
+                });
+            });
+
+
+            return (
+                <>
+                    <h1>瀑布流</h1>
+                    <div id='container'>
+                        <div className='box'>
+                            <img src="../img/img1.jpg" alt="" />
+                        </div>
+                        <div className='box'>
+                            <img src="../img/img2.jpg" alt="" />
+                        </div>
+                        <div className='box'>
+                            <img src="../img/img3.jpg" alt="" />
+                        </div>
+                        <div className='box'>
+                            <img src="../img/img4.jpg" alt="" />
+                        </div>
+                        <div className='box'>
+                            <img src="../img/img5.jpg" alt="" />
+                        </div>
+                        <div className='box'>
+                            <img src="../img/img6.jpg" alt="" />
+                        </div>
+                        <div className='box'>
+                            <img src="../img/img7.jpg" alt="" />
+                        </div>
+                    </div>
+                </>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+    <!-- jquery主程式 -->
+    <script src="./jQuery1-0903/js/jquery-1.11.3.min.js"></script>
+    <!-- 載入圖片js(因瀑布流通常圖片會較大) -->
+    <script src="./jQuery1-0903/js/imagesloaded.pkgd.min.js"></script>
+    <script src="./jQuery1-0903/js/masonry.pkgd.min.js"></script>
+
+</body>
+
+</html>

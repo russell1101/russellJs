@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <link rel="stylesheet" href="./jQuery1-0903/css/textslider.css">
+    <!-- 自己後寫 取代上面套件css -->
+    <style>
+        .slideText {
+            height: 1.5rem;
+            /*1rem 大約為 16px*/
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useEffect } = React;
+
+        function App() {
+            useEffect(() => {
+                $(function () {
+                    $('.slideText').textslider({
+                        direction: 'scrollUp', // 捲動方向: scrollUp向上, scrollDown向下
+                        scrollNum: 1, // 一次捲動幾個<li>
+                        scrollSpeed: 800, // 捲動速度(ms)
+                        pause: 500  // 停頓時間(ms)
+                    })
+                })
+            }, []);
+
+
+
+
+            return (
+                <>
+                    <h1>文字輪播</h1>
+                    <div class='slideText'>
+                        <ul>
+                            <li>news1</li>
+                            <li>news2</li>
+                            <li>news3</li>
+                            <li>news4</li>
+                            <li>news5</li>
+                            <li>news6</li>
+                            <li>news7</li>
+                            <li>news8</li>
+                            <li>news9</li>
+                        </ul>
+                    </div>
+                </>
+            )
+        };
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+    <!-- jquery主程式 -->
+    <script src="./jQuery1-0903/js/jquery-1.11.3.min.js"></script>
+    <!-- 輪播效果js -->
+    <script src="./jQuery1-0903/js/jquery.textslider.js"></script>
+</body>
+
+</html>
