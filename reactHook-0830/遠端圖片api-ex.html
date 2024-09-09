@@ -65,7 +65,11 @@
                     const Card = ({ item }) => {
                         return (
                             <div className="card">
-                                <img src={item.urls.regular} className="card-img-top img-cover" alt="..." height='400' width='100%' />
+                                <img src={item.urls.regular}
+                                    className="card-img-top img-cover"
+                                    alt="..."
+                                    height='400'
+                                    width='100%' />
                             </div>
                         )
                     }
@@ -126,9 +130,10 @@
 
                                 // 更新頁數 usetate會隨著畫面渲染改變 current只會在這裡做改變
                                 currentPage.current = page;
-
+                                setIsLoading(false); // 完成後設定 isLoading 為 false
                             } catch (error) {
                                 console.log(error);
+                                setIsLoading(false); // 當有錯誤時也要設定 isLoading 為 false
                             }
                         }
 
@@ -148,7 +153,7 @@
                         useEffect(() => {
                             getPhotos(1, true);
                             // 建立滾動監聽函式
-                            const scrollEvent = () => {
+                            const ScrollEvent = () => {
                                 // console.log('scroll', window.scrollY)  //查看滾到哪裡
                                 // console.dir(list.current);
 
@@ -167,10 +172,10 @@
                                 }
                             }
                             // 檢測捲動間聽
-                            window.addEventListener('scroll', scrollEvent);
+                            window.addEventListener('scroll', ScrollEvent);
                             // 移除監聽(確保每次捲動時 位置資料是正確的)
                             return () => {
-                                window.removeEventListener('scroll', scrollEvent);
+                                window.removeEventListener('scroll', ScrollEvent);
                             }
 
                         }, [filterString]);  //若後加空陣列 只會在初始化時被執行
@@ -188,7 +193,7 @@
                                         jsonData.map((item) => {
                                             return (
                                                 <div className='col' key={item.id}>
-                                                    <Card urls_regular={item.urls.regular} />
+                                                    <Card item={item} />
                                                 </div>
                                             )
                                         })
