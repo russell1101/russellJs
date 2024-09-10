@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        #wrapper {
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        #filterBtn {
+            padding-bottom: 30px;
+        }
+
+        #filterBtn a {
+            background-color: #ccc;
+            border-radius: 30px;
+            margin: 0 10px;
+            padding: 5px 30px;
+        }
+
+        #filterBtn a.active {
+            color: red;
+            font-weight: bold;
+            background-color: #fff;
+            box-shadow: 0 0 3px #333;
+        }
+
+        /* 列表樣式 */
+        #filterList {
+            width: 800px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        #filterList ul {
+            padding: 0;
+        }
+
+        #filterList ul li {
+            width: 150px;
+            float: left;
+            list-style: none;
+        }
+
+        #filterList ul li img {
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useEffect } = React;
+
+        function App() {
+            useEffect(() => {
+                // 轉寫jquery
+                $(function () {
+                    // 變數宣告
+                    // 所有按鈕
+                    let setFilter = $('#filterBtn');
+                    // 按鈕中的超連結元素
+                    let filterBtn = setFilter.find('a');
+                    // 取得all按鈕
+                    let btnAll = $('.allItem');
+                    // 取得所有列表中的元素區
+                    let setList = $('#filterList');
+                    // 取得列表中的li
+                    let filterList = setList.find('li');
+
+
+                    // 當任一個按鈕被點擊時
+                    filterBtn.click(function () {
+                        // attr 可以抓取屬性(不只class)
+                        // console.log($(this).attr('class'));
+
+                        // 檢查是否被點選狀態 不是才執行
+                        if (!($(this).hasClass('active'))) {
+                            // 取出類別名稱給
+                            let filterClass = $(this).attr('class');
+
+                            // 使用each()方法 篩選列表中一樣的類別名稱
+                            filterList.each(function () {
+                                if ($(this).hasClass(filterClass)) {
+                                    // 有找到
+                                    $(this).css({ display: 'block' });
+                                } else {
+                                    // 沒找到
+                                    $(this).css({ display: 'none' });
+                                }
+                            })
+
+                            // 清除所有按鈕上的active
+                            filterBtn.removeClass('active');
+                            // 在檢查沒有被點擊狀態後 新增active 但必須加在最後面 不然會影響到上面class的判定
+                            $(this).addClass('active');
+                        }
+                    })
+
+                    // all全部顯示另外做
+                    btnAll.click(function () {
+                        filterList.each(function () {
+                            $(this).css({ display: 'block' })
+                        })
+                    })
+
+                    // 載入的時候預設all
+                    btnAll.click();
+                })
+
+            }, []);
+
+
+            return (
+                <>
+                    <div id='wrapper'>
+                        {/*按鈕區*/}
+                        <div id='filterBtn'>
+                            <a href="#" class='allItem'>ALL</a>
+                            <a href="#" class='cats'>CATS</a>
+                            <a href="#" class='food'>FOOD</a>
+                            <a href="#" class='view'>VIEW</a>
+                        </div>
+                        {/*圖片列表區*/}
+                        <div id='filterList'>
+                            <ul>
+                                <li className='view'><img src="./images/view2.jpg" alt="" /></li>
+                                <li className='food'><img src="./images/food1.jpg" alt="" /></li>
+                                <li className='view'><img src="./images/view4.jpg" alt="" /></li>
+                                <li className='cats'><img src="./images/cats1.jpg" alt="" /></li>
+                                <li className='food'><img src="./images/food2.jpg" alt="" /></li>
+                                <li className='cats'><img src="./images/cats2.jpg" alt="" /></li>
+                                <li className='cats'><img src="./images/cats3.jpg" alt="" /></li>
+                                <li className='food'><img src="./images/food5.jpg" alt="" /></li>
+                                <li className='food'><img src="./images/food4.jpg" alt="" /></li>
+                                <li className='cats'><img src="./images/cats4.jpg" alt="" /></li>
+                                <li className='cats'><img src="./images/cats5.jpg" alt="" /></li>
+                                <li className='cats'><img src="./images/cats6.jpg" alt="" /></li>
+                                <li className='view'><img src="./images/view3.jpg" alt="" /></li>
+                                <li className='food'><img src="./images/food3.jpg" alt="" /></li>
+                                <li className='view'><img src="./images/view1.jpg" alt="" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                </>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+    <!-- jquery主程式 -->
+    <script src="./js/jquery-1.11.3.min.js"></script>
+
+</body>
+
+</html>
