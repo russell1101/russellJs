@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>document</title>
+
+    <!-- 步驟一：載入React, Bable -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 自己的css放這 -->
+</head>
+
+<body>
+    <!-- 步驟二：載入root元素 -->
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        function App() {
+            // 使用者名稱
+            const [inputName, setInputName] = useState('test');
+
+            const arrCity = ['台北市', '新北市', '台中市', '桃園市'];
+            const [selCity, setSelCity] = useState('');
+
+            return (
+                <>
+                    {/*#1 input*/}
+                    <label htmlFor="username">使用者名稱</label>
+                    <input type="text" id='username' value={inputName} onChange={e => { setInputName(e.target.value) }} />
+                    -{inputName}
+
+                    <hr />
+                    {/*#2 下拉清單 select*/}
+                    {/*disabled 失效的*/}
+                    <select name="" id="" value={selCity} onChange={e => { setSelCity(e.target.value) }}>
+                        <option value="" disabled>請選擇</option>
+                        {
+                            arrCity.map((city) => {
+                                return <option value={city} key={city}>{city}</option>
+                            })
+                        }
+                    </select>-{selCity}
+                </>
+            )
+        }
+
+        // 步驟四：渲染元件到根元件上
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />)
+    </script>
+
+</body>
+
+</html>
