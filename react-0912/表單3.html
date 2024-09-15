@@ -21,28 +21,35 @@
 
 
         function App() {
-            const [userid, setUserid] = useState('');
+            const [formData, setFormData] = useState({ userid: 'test' });
+
+            // 送出按鈕函式
             const handleSubmit = (e) => {
                 // 取消html預設行為
                 e.preventDefault();
-                console.dir(e);
+                // console.dir(e);
+                // console.log(userid);
+                // console.log(username);
+                console.log(formData);
             }
 
             const handleChange = (e) => {
                 setUserid(e.target.value)
             }
 
-            const handleChange2 = (e) => {
-                setUserid(e.target.value)
+            const handleInputChange= (e) => {
+                // 取得name屬性
+                const curName=e.target.name;
+                // 取值
+                const curValue=e.target.value;
+                setFormData({...formData,[curName]:curValue})
             }
             return (
                 <>
-
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="uid">帳號{userid}</label>
-                        <input type="text" id='uid' onChange={handleChange} />
-                        <label htmlFor="uname">名稱{username}</label>
-                        <input type="text" id='uname' onChange={handleChange2} />
+                        <label htmlFor="userid">帳號{formData.userid}</label>
+                        <input type="text" id='userid' onChange={handleInputChange} value={formData.userid} name='userid' />
+
                         <button type='submit'>送出</button>
                     </form>
 

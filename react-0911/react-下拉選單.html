@@ -23,8 +23,15 @@
             // 使用者名稱
             const [inputName, setInputName] = useState('test');
 
+            // #2下拉清單select
+            // 建立一個縣市名稱陣列清單
             const arrCity = ['台北市', '新北市', '台中市', '桃園市'];
             const [selCity, setSelCity] = useState('');
+
+            // #3複選下拉清單select
+            // 建立一個縣市名稱陣列清單
+            const arrCity2 = ['台北市', '新北市', '台中市', '桃園市'];
+            const [selCity2, setSelCity2] = useState([]);
 
             return (
                 <>
@@ -44,6 +51,26 @@
                             })
                         }
                     </select>-{selCity}
+
+                    <hr />
+                    {/*#3 下拉清單複選 select*/}
+                    {/*disabled 失效的*/}
+                    <select name="" id="" multiple
+                        value={selCity2}
+                        onChange={(e) => {
+                            // console.dir(e);  檢查這個onchange事件目標值是在這個物件的何處
+                            // console.log(e.target.selectedOptions[0].value);
+                            // console.log([...e.target.selectedOptions].map((op)=>op.value));
+                            setSelCity2([...e.target.selectedOptions].map((op) => op.value));
+                        }}
+                    >
+                        <option value="" disabled>請選擇</option>
+                        {
+                            arrCity2.map((city) => {
+                                return <option value={city} key={city}>{city}</option>
+                            })
+                        }
+                    </select>-{selCity2}
                 </>
             )
         }

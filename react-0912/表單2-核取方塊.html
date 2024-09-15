@@ -31,14 +31,32 @@
                 // ...其餘函式 保留之前的選擇紀錄
                 // setCheckList([...chkList, e.target.value]);
                 // 檢查是否被勾選
+                if (e.target.checked) {
+                    // 是就顯示
+                    setChkList([...chkList, e.target.value]);
+                } else {
+                    // 不是就刪除
+                    // 使用filter方法 篩選出不是取消的項目
+                    setChkList(chkList.filter((item) => item != e.target.value));
+                }
 
-                
 
 
             }
 
             return (
                 <>
+
+                    {/*#1 單一核取方塊checkBox*/}
+                    <label htmlFor="isCheck">確認狀態</label>
+                    <input type="checkbox" id='isCheck'
+                        value={check}
+                        onChange={(e) => {
+                            setCheck(e.target.checked);
+                        }}
+                    //變成字串才可以顯示
+                    />{check.toString()}
+                    <hr />
 
                     {/*多個核取方塊*/}
                     <label htmlFor="chkList1">冰美式</label>
